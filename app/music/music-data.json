@@ -1,0 +1,35 @@
+{
+  "favoriteArtists": [
+    {
+      "name": "The Weeknd",
+      "songs": "Cry For Me, In The Night"
+    },
+    {
+      "name": "JVKE",
+      "songs": "this is what ____ feels like "
+    },
+    {
+      "name": "Ed Sheeran",
+      "songs": "Azizam, Don't, Drive"
+    }
+  ],
+  "playlists": [
+    {
+      "name": "october 25",
+      "link": "https://music.apple.com/in/playlist/oct-25/pl.u-b3b8RKGIyWBoNWm"
+    },
+    {
+      "name": "walking to work",
+      "link": "https://music.apple.com/in/playlist/pitt/pl.u-LdbqERvsxGvJqGL"
+    },
+    {
+      "name": "chasing a ghost",
+      "link": "https://music.apple.com/in/playlist/chasing-a-ghost-that-summer-this-winter/pl.u-vxy6kJMFzaZ9oaG"
+    }
+  ],
+  "currentlyOnRepeat": [
+    "Reflections Laughing - The Weeknd",
+    "this is what winter feels like - JVKE",
+    "Die with a smile - Bruno Mars"
+  ]
+}
