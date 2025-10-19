@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { Footer } from "@/components/footer"
 import { GuestbookClient } from "@/components/guestbook-client"
 import { getGuestbookEntries } from "@/app/actions/getGuestBookEntries"
