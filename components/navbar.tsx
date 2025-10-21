@@ -8,6 +8,9 @@ const navItems = {
   '/': {
     name: 'home',
   },
+  '/blog': {
+    name: 'blog',
+  },
   '/music': {
     name: 'music',
   },
@@ -29,7 +32,7 @@ export function Navbar() {
   const pathname = usePathname()
 
   return (
-    <aside className="-ml-[8px] mb-8 md:mb-16 tracking-tight">
+    <aside className="-ml-[8px] mb-6 tracking-tight">
       <div className="lg:sticky lg:top-20">
         <h1 className="font-semibold text-2xl mb-4 md:mb-8 tracking-tighter">sanjai</h1>
         <nav
