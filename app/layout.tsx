@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/navbar"
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,11 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sanjaibalajee.me"),
   title: "sanjai balajee",
-  description: "portfolio site - always learning, always shipping.",
+  description: "always learning, always shipping.",
   openGraph: {
     title: "sanjai balajee",
-    description: "portfolio site - always learning, always shipping.",
+    description: "always learning, always shipping.",
     url: "https://sanjaibalajee.me",
     siteName: "sanjai balajee",
     locale: "en_US",
@@ -49,6 +51,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );
