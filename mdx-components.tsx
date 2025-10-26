@@ -1,9 +1,11 @@
 import type { MDXComponents } from 'mdx/types'
 import { Tweet } from '@/app/blog/components/tweet'
+import { Gallery } from '@/app/blog/components/gallery'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Tweet,
+    Gallery,
     h1: ({ children }) => (
       <h1 className="font-semibold text-3xl mb-8 tracking-tight text-neutral-900 dark:text-neutral-100">
         {children}
