@@ -8,7 +8,7 @@ export default function BlogLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow">
-        <article className="prose prose-neutral dark:prose-invert max-w-none">
+        <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:mb-2">
           {children}
         </article>
       </div>
