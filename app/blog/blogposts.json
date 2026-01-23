@@ -1,8 +1,14 @@
 {
   "posts": [
     {
+      "slug": "a-year-of-unlearning",
+      "date": "Jan 23, 2026",
+      "title": "a year of unlearning"
+    },
+    {
       "slug": "sidequestmaxxing-my-way-back",
       "date": "Oct 27, 2025",
       "title": "sidequestmaxxing my way back"
-    }  ]
+    }
+  ]
 }
