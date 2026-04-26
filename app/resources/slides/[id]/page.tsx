@@ -29,8 +29,12 @@ export default async function SlidePage({ params }: { params: Promise<{ id: stri
               {deck.title}
             </h1>
             <div className="flex items-center gap-3 mt-2">
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">{deck.event}</p>
-              <span className="text-neutral-400 dark:text-neutral-600">·</span>
+              {deck.event?.trim() && (
+                <>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{deck.event}</p>
+                  <span className="text-neutral-400 dark:text-neutral-600">·</span>
+                </>
+              )}
               <p className="text-sm text-neutral-600 dark:text-neutral-400">{deck.date}</p>
             </div>
           </div>
