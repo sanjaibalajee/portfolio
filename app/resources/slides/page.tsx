@@ -33,9 +33,11 @@ export default function Slides() {
                       <h2 className="font-medium text-base sm:text-lg tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {deck.title}
                       </h2>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-0.5">
-                        {deck.event}
-                      </p>
+                      {deck.event?.trim() && (
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-0.5">
+                          {deck.event}
+                        </p>
+                      )}
                     </div>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400 whitespace-nowrap">
                       {deck.date}
