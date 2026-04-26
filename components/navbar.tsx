@@ -17,6 +17,9 @@ const navItems = {
   '/guestbook': {
     name: 'guestbook',
   },
+  '/resources': {
+    name: 'resources',
+  },
 }
 
 const socialLinks = {
