@@ -38,7 +38,7 @@ export default async function SlidePage({ params }: { params: Promise<{ id: stri
               <p className="text-sm text-neutral-600 dark:text-neutral-400">{deck.date}</p>
             </div>
           </div>
-          <div className="w-full rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800">
+          <div className="hidden sm:block w-full rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800">
             <iframe
               src={deck.pdf}
               className="w-full"
@@ -46,7 +46,7 @@ export default async function SlidePage({ params }: { params: Promise<{ id: stri
               title={deck.title}
             />
           </div>
-          <div className="mt-4">
+          <div className="mt-4 sm:mt-4">
             <a
               href={deck.pdf}
               download
