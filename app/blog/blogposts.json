@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "slug": "chasing-the-high",
+      "date": "Jun 23, 2026",
+      "title": "chasing the high"
+    },
+    {
       "slug": "a-year-of-unlearning",
       "date": "Jan 23, 2026",
       "title": "a year of unlearning"
