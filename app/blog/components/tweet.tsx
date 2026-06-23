@@ -26,25 +26,6 @@ const TweetContent = async ({ id, components }: TweetProps) => {
       return null;
     }
 
-    // Some API responses come back with `entities` as an empty array instead
-    // of the expected object, which makes react-tweet's enrichTweet spread an
-    // undefined value ("c is not iterable") and crashes prerendering.
-    const e = (result as any).entities;
-    if (!e || Array.isArray(e)) {
-      (result as any).entities = {
-        hashtags: [],
-        urls: [],
-        user_mentions: [],
-        symbols: [],
-        media: [],
-      };
-    } else {
-      e.hashtags ??= [];
-      e.urls ??= [];
-      e.user_mentions ??= [];
-      e.symbols ??= [];
-    }
-
     tweet = result;
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
