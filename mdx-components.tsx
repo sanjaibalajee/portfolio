@@ -2,12 +2,16 @@ import type { MDXComponents } from 'mdx/types'
 import { Tweet } from '@/app/blog/components/tweet'
 import { Gallery } from '@/app/blog/components/gallery'
 import { DiffBlock } from '@/app/blog/components/diff-block'
+import { Highlight } from '@/app/blog/components/highlight'
+import { BigQuote } from '@/app/blog/components/big-quote'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     Tweet,
     Gallery,
     DiffBlock,
+    Highlight,
+    BigQuote,
     h1: ({ children }) => (
       <h1 className="font-semibold text-3xl mb-8 tracking-tight text-neutral-900 dark:text-neutral-100">
         {children}
