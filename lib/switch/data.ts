@@ -7,6 +7,7 @@ import {
   switchSubmissions,
 } from "@/db/schema";
 import { dateInIndia } from "@/lib/switch/dates";
+import { languageLabel } from "@/lib/switch/languages";
 
 export type SolutionView = {
   id: number;
@@ -139,7 +140,7 @@ function summarise(problems: ProblemView[]): SwitchStats {
     longestStreak: longestStreak(days),
     activeDays: days.length,
     byDifficulty: difficulty,
-    languages: [...new Set(problems.flatMap((problem) => problem.solutions.map((s) => s.language)))].sort(),
+    languages: [...new Set(problems.flatMap((problem) => problem.solutions.map((s) => languageLabel(s.language))))].sort(),
     lastSolvedAt: problems.map((problem) => problem.lastSolvedAt).filter(Boolean).sort().at(-1) ?? null,
   };
 }

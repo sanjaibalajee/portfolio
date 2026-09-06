@@ -1,16 +1,6 @@
-const LANGUAGE_LABELS: Record<string, string> = {
-  python: "python",
-  python3: "python",
-  cpp: "c++",
-  csharp: "c#",
-  golang: "go",
-  javascript: "javascript",
-  typescript: "typescript",
-};
+import { languageLabel } from "@/lib/switch/languages";
 
-export function languageLabel(language: string) {
-  return LANGUAGE_LABELS[language.toLowerCase()] ?? language.toLowerCase();
-}
+export { languageLabel };
 
 export function CodeBlock({
   code,
