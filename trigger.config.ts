@@ -1,8 +1,8 @@
 import { defineConfig } from "@trigger.dev/sdk";
 
 export default defineConfig({
-  // From the Trigger.dev dashboard: Project settings > Project ref (proj_...).
-  project: process.env.TRIGGER_PROJECT_REF ?? "proj_replace_me",
+  // Trigger.dev dashboard > Project settings > Project ref. Not a secret.
+  project: "proj_bklmtewbnxkqumlpccfy",
   dirs: ["./trigger"],
   maxDuration: 600,
   retries: {
