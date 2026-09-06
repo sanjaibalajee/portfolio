@@ -1,6 +1,8 @@
 import { timingSafeEqual } from "node:crypto";
+import { desc } from "drizzle-orm";
 import { NextResponse } from "next/server";
-import { isDatabaseConfigured } from "@/db/drizzle";
+import { db, isDatabaseConfigured } from "@/db/drizzle";
+import { switchSubmissions } from "@/db/schema";
 import { ingestSchema, ingestSolutions } from "@/lib/switch/ingest";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +17,8 @@ function tokenMatches(header: string | null) {
   return provided.length === target.length && timingSafeEqual(provided, target);
 }
 
-export async function POST(request: Request) {
+/** Shared gate for both handlers; returns a response only when the request is rejected. */
+function reject(request: Request) {
   if (!isDatabaseConfigured) {
     return NextResponse.json({ error: "Database is not configured" }, { status: 503 });
   }
@@ -25,6 +28,33 @@ export async function POST(request: Request) {
   if (!tokenMatches(request.headers.get("authorization"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  return null;
+}
+
+/**
+ * Watermark for the sync job: the newest submission already stored. The job
+ * pages backwards through LeetCode only until it reaches this, so a routine run
+ * reads a single page instead of the whole history.
+ */
+export async function GET(request: Request) {
+  const rejected = reject(request);
+  if (rejected) return rejected;
+
+  const [latest] = await db
+    .select({ submittedAt: switchSubmissions.submittedAt })
+    .from(switchSubmissions)
+    .orderBy(desc(switchSubmissions.submittedAt))
+    .limit(1);
+
+  return NextResponse.json({
+    lastSubmittedAt: latest?.submittedAt.toISOString() ?? null,
+    lastSubmittedAtSeconds: latest ? Math.floor(latest.submittedAt.getTime() / 1000) : 0,
+  });
+}
+
+export async function POST(request: Request) {
+  const rejected = reject(request);
+  if (rejected) return rejected;
 
   const parsed = ingestSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) {

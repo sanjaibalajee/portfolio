@@ -4,6 +4,7 @@ import { auth, signOut } from "@/auth";
 import { SwitchDashboard } from "@/components/switch-dashboard";
 import { isDatabaseConfigured } from "@/db/drizzle";
 import { getSwitchDashboard } from "@/lib/switch/data";
+import { highlightCode } from "@/lib/switch/highlight";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -16,6 +17,17 @@ export default async function SwitchDashboardPage() {
   const session = await auth();
   if (!session?.user) redirect("/switch/login");
   const data = await getSwitchDashboard();
+  const problems = await Promise.all(
+    data.problems.map(async (problem) => ({
+      ...problem,
+      solutions: await Promise.all(
+        problem.solutions.map(async (solution) => ({
+          ...solution,
+          highlightedHtml: await highlightCode(solution.code, solution.language),
+        })),
+      ),
+    })),
+  );
 
   return (
     <section>
@@ -31,7 +43,7 @@ export default async function SwitchDashboardPage() {
           <button className="text-xs text-neutral-500 hover:text-neutral-200 transition-colors">sign out</button>
         </form>
       </div>
-      <SwitchDashboard initialData={data} />
+      <SwitchDashboard initialData={{ ...data, problems }} />
     </section>
   );
 }

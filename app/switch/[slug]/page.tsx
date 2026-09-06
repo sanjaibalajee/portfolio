@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
-import { CodeBlock, DifficultyTag } from "@/components/switch/code-block";
+import { DifficultyTag } from "@/components/switch/code-block";
+import { HighlightedCodeBlock } from "@/components/switch/highlighted-code-block";
 import { isDatabaseConfigured } from "@/db/drizzle";
 import { getPublicProblem } from "@/lib/switch/data";
 
@@ -77,7 +78,7 @@ export default async function SwitchProblemPage({
 
           <div className="mt-8 space-y-5 border-t border-neutral-800 pt-8">
             {problem.solutions.map((solution) => (
-              <CodeBlock
+              <HighlightedCodeBlock
                 key={solution.id}
                 code={solution.code}
                 language={solution.language}

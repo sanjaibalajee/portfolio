@@ -7,6 +7,7 @@ import {
   switchSubmissions,
 } from "@/db/schema";
 import { dateInIndia } from "@/lib/switch/dates";
+import { languageLabel } from "@/lib/switch/languages";
 
 export type SolutionView = {
   id: number;
@@ -38,12 +39,29 @@ export type SwitchStats = {
   lastSolvedAt: string | null;
 };
 
+export type DailyActivity = {
+  date: string;
+  count: number;
+};
+
 /**
  * Every distinct calendar day (Asia/Kolkata) on which a solution was accepted,
  * ascending. Streaks are counted over these.
  */
 function solveDays(timestamps: Date[]) {
   return [...new Set(timestamps.map((value) => dateInIndia(value)))].sort();
+}
+
+function dailyActivity(problems: ProblemView[]): DailyActivity[] {
+  const counts = new Map<string, number>();
+  for (const solution of problems.flatMap((problem) => problem.solutions)) {
+    const day = dateInIndia(new Date(solution.submittedAt));
+    counts.set(day, (counts.get(day) ?? 0) + 1);
+  }
+
+  return [...counts]
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date.localeCompare(b.date));
 }
 
 function previousDay(day: string) {
@@ -139,7 +157,7 @@ function summarise(problems: ProblemView[]): SwitchStats {
     longestStreak: longestStreak(days),
     activeDays: days.length,
     byDifficulty: difficulty,
-    languages: [...new Set(problems.flatMap((problem) => problem.solutions.map((s) => s.language)))].sort(),
+    languages: [...new Set(problems.flatMap((problem) => problem.solutions.map((s) => languageLabel(s.language))))].sort(),
     lastSolvedAt: problems.map((problem) => problem.lastSolvedAt).filter(Boolean).sort().at(-1) ?? null,
   };
 }
@@ -148,7 +166,7 @@ function summarise(problems: ProblemView[]): SwitchStats {
 export async function getPublicSwitch() {
   requireDatabase();
   const problems = await loadProblemsWithSolutions();
-  return { problems, stats: summarise(problems) };
+  return { problems, stats: summarise(problems), activity: dailyActivity(problems) };
 }
 
 export async function getPublicProblem(slug: string) {

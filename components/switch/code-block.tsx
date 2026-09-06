@@ -1,30 +1,29 @@
-const LANGUAGE_LABELS: Record<string, string> = {
-  python: "python",
-  python3: "python",
-  cpp: "c++",
-  csharp: "c#",
-  golang: "go",
-  javascript: "javascript",
-  typescript: "typescript",
-};
+import { languageLabel } from "@/lib/switch/languages";
 
-export function languageLabel(language: string) {
-  return LANGUAGE_LABELS[language.toLowerCase()] ?? language.toLowerCase();
-}
+export { languageLabel };
 
 export function CodeBlock({
   code,
   language,
   submittedAt,
+  highlightedHtml,
 }: {
   code: string;
   language: string;
   submittedAt?: string;
+  highlightedHtml?: string;
 }) {
   return (
-    <figure className="border border-neutral-800">
-      <figcaption className="flex items-baseline justify-between gap-4 border-b border-neutral-800 px-3 py-1.5 text-xs text-neutral-500">
-        <span>{languageLabel(language)}</span>
+    <figure className="overflow-hidden rounded-lg border border-neutral-800 bg-[#0d1117] shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
+      <figcaption className="flex items-center justify-between gap-4 border-b border-neutral-800 bg-[#161b22] px-3 py-2 text-xs text-neutral-500">
+        <span className="flex items-center gap-3">
+          <span className="flex gap-1.5" aria-hidden="true">
+            <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+            <span className="size-2.5 rounded-full bg-[#febc2e]" />
+            <span className="size-2.5 rounded-full bg-[#28c840]" />
+          </span>
+          <span>{languageLabel(language)}</span>
+        </span>
         {submittedAt && (
           <time dateTime={submittedAt}>
             {new Date(submittedAt).toLocaleDateString("en-IN", {
@@ -34,11 +33,16 @@ export function CodeBlock({
           </time>
         )}
       </figcaption>
-      {/* Capped height keeps a long solution from swallowing the page; the block
-          scrolls internally instead. */}
-      <pre className="max-h-96 overflow-auto px-3 py-3 text-xs leading-relaxed text-neutral-300">
-        <code>{code}</code>
-      </pre>
+      {highlightedHtml ? (
+        <div
+          className="switch-code"
+          dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+        />
+      ) : (
+        <pre className="max-h-[32rem] overflow-auto p-4 text-[13px] leading-6 text-neutral-300">
+          <code>{code}</code>
+        </pre>
+      )}
     </figure>
   );
 }

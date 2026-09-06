@@ -5,6 +5,10 @@ import Link from "next/link";
 import { CodeBlock, DifficultyTag, languageLabel } from "@/components/switch/code-block";
 import type { DashboardProblem, SwitchStats } from "@/lib/switch/data";
 
+type HighlightedProblem = Omit<DashboardProblem, "solutions"> & {
+  solutions: Array<DashboardProblem["solutions"][number] & { highlightedHtml: string }>;
+};
+
 type LastRun = {
   source: string;
   status: string;
@@ -17,7 +21,7 @@ type LastRun = {
 };
 
 export type DashboardData = {
-  problems: DashboardProblem[];
+  problems: HighlightedProblem[];
   stats: SwitchStats;
   lastRun: LastRun | null;
 };
@@ -96,7 +100,7 @@ function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-function ProblemRow({ problem }: { problem: DashboardProblem }) {
+function ProblemRow({ problem }: { problem: HighlightedProblem }) {
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState(problem.note ?? "");
   const [saved, setSaved] = useState(problem.note ?? "");
@@ -199,6 +203,7 @@ function ProblemRow({ problem }: { problem: DashboardProblem }) {
               code={solution.code}
               language={solution.language}
               submittedAt={solution.submittedAt}
+              highlightedHtml={solution.highlightedHtml}
             />
           ))}
         </div>
