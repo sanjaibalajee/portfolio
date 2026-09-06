@@ -17,6 +17,9 @@ const navItems = {
   '/guestbook': {
     name: 'guestbook',
   },
+  '/switch': {
+    name: 'switch',
+  },
   '/resources': {
     name: 'resources',
   },

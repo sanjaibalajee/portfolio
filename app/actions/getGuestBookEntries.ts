@@ -1,11 +1,14 @@
 
 'use server'
 
-import { db } from '@/db/drizzle';
+import { db, isDatabaseConfigured } from '@/db/drizzle';
 import { guestbook } from '@/db/schema';
 import { desc } from 'drizzle-orm';
 
 export async function addGuestbookEntry(data: { name: string; message: string }) {
+  if (!isDatabaseConfigured) {
+    return { entry: null, error: 'Database is not configured' };
+  }
   
   try {
     const [newEntry] = await db
@@ -24,6 +27,10 @@ export async function addGuestbookEntry(data: { name: string; message: string })
 }
 
 export async function getGuestbookEntries() {
+  if (!isDatabaseConfigured) {
+    return { entries: [], error: 'Database is not configured' };
+  }
+
   try {
     const entries = await db
       .select()
