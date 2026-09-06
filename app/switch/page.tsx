@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
-import { CodeBlock, DifficultyTag } from "@/components/switch/code-block";
+import { ActivitySignal } from "@/components/switch/activity-signal";
+import { DifficultyTag } from "@/components/switch/code-block";
+import { HighlightedCodeBlock } from "@/components/switch/highlighted-code-block";
 import { isDatabaseConfigured } from "@/db/drizzle";
 import { getPublicSwitch } from "@/lib/switch/data";
 
@@ -24,6 +26,7 @@ export default async function SwitchPage() {
 
   const stats = data?.stats;
   const problems = data?.problems ?? [];
+  const activity = data?.activity ?? [];
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-200px)]">
@@ -54,28 +57,41 @@ export default async function SwitchPage() {
                 {stats.languages.length ? ` · ${stats.languages.join(", ")}` : ""}
               </p>
 
-              <div className="mt-10 space-y-12">
+              <ActivitySignal
+                activity={activity}
+                streak={stats.streak}
+                latestActivity={stats.lastSolvedAt ? stats.lastSolvedAt.slice(0, 10) : null}
+              />
+
+              <div className="mt-10 divide-y divide-neutral-800 border-y border-neutral-800">
                 {problems.map((problem) => (
-                  <article key={problem.slug} className="border-t border-neutral-800 pt-6">
-                    <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                      <h2 className="text-base text-neutral-100">
-                        <Link
-                          href={`/switch/${problem.slug}`}
-                          className="underline decoration-neutral-700 underline-offset-4 hover:text-white transition-colors"
-                        >
+                  <details key={problem.slug} className="switch-problem group">
+                    <summary className="flex cursor-pointer items-start justify-between gap-4 py-5 outline-none transition-colors hover:bg-neutral-900/30 focus-visible:bg-neutral-900/30">
+                      <span className="min-w-0">
+                        <span className="flex items-center gap-2 text-sm text-neutral-200 transition-colors group-hover:text-white">
+                          <span className="inline-block text-neutral-600 transition-transform group-open:rotate-90" aria-hidden="true">
+                            ›
+                          </span>
                           {problem.frontendId ? `${problem.frontendId}. ` : ""}
                           {problem.title}
-                        </Link>
-                      </h2>
+                        </span>
+                        <span className="mt-1.5 block pl-4 text-xs text-neutral-600">
+                          {problem.solutions.length} {problem.solutions.length === 1 ? "solution" : "solutions"}
+                          {problem.topics.length > 0 ? ` · ${problem.topics.slice(0, 3).join(" · ")}` : ""}
+                        </span>
+                      </span>
                       <DifficultyTag difficulty={problem.difficulty} />
-                    </div>
-                    {problem.topics.length > 0 && (
-                      <p className="mt-1.5 text-xs text-neutral-600">{problem.topics.join(" · ")}</p>
-                    )}
+                    </summary>
 
-                    <div className="mt-4 space-y-4">
+                    <div className="space-y-4 pb-7 pl-4 sm:pl-6">
+                      <Link
+                        href={`/switch/${problem.slug}`}
+                        className="inline-block text-xs text-neutral-500 underline decoration-neutral-700 underline-offset-4 transition-colors hover:text-neutral-200"
+                      >
+                        open problem page →
+                      </Link>
                       {problem.solutions.map((solution) => (
-                        <CodeBlock
+                        <HighlightedCodeBlock
                           key={solution.id}
                           code={solution.code}
                           language={solution.language}
@@ -83,7 +99,7 @@ export default async function SwitchPage() {
                         />
                       ))}
                     </div>
-                  </article>
+                  </details>
                 ))}
               </div>
 
