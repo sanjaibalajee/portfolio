@@ -62,7 +62,10 @@ async function postBatch(
 
 export const syncLeetCode = schedules.task({
   id: "sync-leetcode",
-  cron: { pattern: "0 2 * * *", timezone: "Asia/Kolkata" },
+  // 20:30 UTC == 02:00 IST. Written in UTC rather than with a timezone because
+  // Trigger.dev rejects "Asia/Kolkata"; India has no DST, so the +5:30 offset is
+  // fixed and this stays exact year round.
+  cron: "30 20 * * *",
   maxDuration: 600,
   run: async () => {
     const credentials: LeetCodeCredentials = {
