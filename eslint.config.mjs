@@ -10,6 +10,7 @@ export default defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    ".trigger/**",
     "next-env.d.ts",
   ]),
   {
