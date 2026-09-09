@@ -57,11 +57,7 @@ export default async function SwitchPage() {
                 {stats.languages.length ? ` · ${stats.languages.join(", ")}` : ""}
               </p>
 
-              <ActivitySignal
-                activity={activity}
-                streak={stats.streak}
-                latestActivity={stats.lastSolvedAt ? stats.lastSolvedAt.slice(0, 10) : null}
-              />
+              <ActivitySignal activity={activity} />
 
               <div className="mt-10 divide-y divide-neutral-800 border-y border-neutral-800">
                 {problems.map((problem) => (

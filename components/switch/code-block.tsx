@@ -14,7 +14,7 @@ export function CodeBlock({
   highlightedHtml?: string;
 }) {
   return (
-    <figure className="overflow-hidden rounded-lg border border-neutral-800 bg-[#0d1117] shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
+    <figure className="overflow-hidden rounded-lg border border-neutral-800 bg-[#0d1117]">
       <figcaption className="flex items-center justify-between gap-4 border-b border-neutral-800 bg-[#161b22] px-3 py-2 text-xs text-neutral-500">
         <span className="flex items-center gap-3">
           <span className="flex gap-1.5" aria-hidden="true">
