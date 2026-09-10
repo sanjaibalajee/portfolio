@@ -1,4 +1,42 @@
 {
+  "vinylTracks": [
+    {
+      "title": "Is It True",
+      "artist": "Tame Impala"
+    },
+    {
+      "title": "God Was Showing Off",
+      "artist": "Bruno Mars"
+    },
+    {
+      "title": "this is what heartbreak feels like",
+      "artist": "JVKE"
+    },
+    {
+      "title": "Popular",
+      "artist": "The Weeknd"
+    },
+    {
+      "title": "That's Hilarious",
+      "artist": "Charlie Puth"
+    },
+    {
+      "title": "Everybody (Backstreet's Back)",
+      "artist": "Backstreet Boys"
+    },
+    {
+      "title": "Loser",
+      "artist": "Tame Impala"
+    },
+    {
+      "title": "Loser",
+      "artist": "Charlie Puth"
+    },
+    {
+      "title": "Apocalypse",
+      "artist": "Cigarettes After Sex"
+    }
+  ],
   "favoriteArtists": [
     {
       "name": "The Weeknd",
@@ -6,7 +44,7 @@
     },
     {
       "name": "JVKE",
-      "songs": "this is what ____ feels like "
+      "songs": "this is what ____ feels like"
     },
     {
       "name": "Ed Sheeran",
@@ -22,10 +60,5 @@
       "name": "walking to work",
       "link": "https://music.apple.com/in/playlist/pitt/pl.u-LdbqERvsxGvJqGL"
     }
-  ],
-  "currentlyOnRepeat": [
-    "Reflections Laughing - The Weeknd",
-    "this is what winter feels like - JVKE",
-    "Die with a smile - Bruno Mars"
   ]
 }

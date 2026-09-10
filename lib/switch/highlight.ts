@@ -78,12 +78,27 @@ const highlighter = createHighlighterCore({
   engine: createJavaScriptRegexEngine(),
 });
 
+// A submission never changes once it is stored, so the same code highlights to
+// the same HTML forever. /switch renders every solution on every request, so
+// keep the recent results on the instance rather than re-parsing them.
+const CACHE_LIMIT = 200;
+const cache = new Map<string, string>();
+
+function remember(key: string, html: string) {
+  if (cache.size >= CACHE_LIMIT) cache.delete(cache.keys().next().value!);
+  cache.set(key, html);
+  return html;
+}
+
 /** Highlight on the server so the browser receives editor-quality HTML, not a highlighter bundle. */
 export async function highlightCode(code: string, language: string) {
   const lang = SHIKI_LANGUAGES[language.toLowerCase()] ?? "text";
+  const key = `${lang}\u0000${code}`;
+  const cached = cache.get(key);
+  if (cached) return cached;
 
   try {
-    return (await highlighter).codeToHtml(code, {
+    return remember(key, (await highlighter).codeToHtml(code, {
       lang,
       theme: "github-dark-default",
       transformers: [
@@ -93,8 +108,8 @@ export async function highlightCode(code: string, language: string) {
           },
         },
       ],
-    });
+    }));
   } catch {
-    return (await highlighter).codeToHtml(code, { lang: "text", theme: "github-dark-default" });
+    return remember(key, (await highlighter).codeToHtml(code, { lang: "text", theme: "github-dark-default" }));
   }
 }
