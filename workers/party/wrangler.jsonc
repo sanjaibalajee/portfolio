@@ -27,8 +27,8 @@
         ],
       },
       "vars": {
-        // Replace with the exact Vercel preview/branch origin before deployment.
-        "ALLOWED_ORIGINS": "https://replace-with-your-preview-host.vercel.app",
+        // Exact staging frontend origin; CI may override it with its configured allowlist.
+        "ALLOWED_ORIGINS": "https://staging.sanjaibalajee.com",
         "AI_DAILY_LIMIT": "5",
       },
     },

@@ -1,0 +1,137 @@
+name: Trigger.dev sync
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/trigger.yml'
+      - 'trigger/**'
+      - 'trigger.config.ts'
+      - 'lib/switch/**'
+      - 'app/api/switch/ingest/**'
+      - 'tests/server/**'
+      - 'db/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.nvmrc'
+      - 'tsconfig.json'
+      - 'eslint.config.mjs'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/trigger.yml'
+      - 'trigger/**'
+      - 'trigger.config.ts'
+      - 'lib/switch/**'
+      - 'app/api/switch/ingest/**'
+      - 'tests/server/**'
+      - 'db/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.nvmrc'
+      - 'tsconfig.json'
+      - 'eslint.config.mjs'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Trigger.dev environment
+        type: choice
+        options: [staging, production]
+        default: staging
+        required: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CI: true
+
+jobs:
+  validate:
+    name: Validate sync task
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: trigger-validation-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Lint sync task and shared code
+        run: npx --no-install eslint trigger trigger.config.ts lib/switch
+      - name: Generate Next.js types for a clean checkout
+        run: npx --no-install next typegen
+      - run: npm run typecheck
+      - run: npm run test:server
+
+  deploy:
+    name: Deploy sync task
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: ${{ inputs.environment == 'staging' && 'Preview' || 'Production' }}
+    concurrency:
+      group: trigger-deploy-${{ inputs.environment || 'production' }}
+      cancel-in-progress: false
+    env:
+      TARGET_ENVIRONMENT: ${{ inputs.environment || 'production' }}
+    steps:
+      - name: Require the latest main commit for production
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "$TARGET_ENVIRONMENT" == production ]]; then
+            if [[ "$GITHUB_REF" != refs/heads/main ]]; then
+              echo '::error::Production deployments must run from main.'
+              exit 1
+            fi
+            main_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
+            if [[ "$GITHUB_SHA" != "$main_sha" ]]; then
+              echo '::error::This run is older than main. Run the workflow for the latest main commit.'
+              exit 1
+            fi
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Match the CLI to the locked Trigger.dev SDK
+        id: trigger
+        run: echo "version=$(node -p 'require("@trigger.dev/sdk/package.json").version')" >> "$GITHUB_OUTPUT"
+      - name: Deploy the selected Trigger.dev environment
+        env:
+          TRIGGER_ACCESS_TOKEN: ${{ secrets[inputs.environment == 'staging' && 'TRIGGER_STAGING_ACCESS_TOKEN' || 'TRIGGER_ACCESS_TOKEN'] }}
+          TRIGGER_VERSION: ${{ steps.trigger.outputs.version }}
+        run: |
+          if [[ -z "$TRIGGER_ACCESS_TOKEN" ]]; then
+            echo "::error::Missing Trigger.dev deployment secret for $TARGET_ENVIRONMENT. Use TRIGGER_ACCESS_TOKEN for production or TRIGGER_STAGING_ACCESS_TOKEN for staging."
+            exit 1
+          fi
+          if [[ "$TARGET_ENVIRONMENT" == staging ]]; then
+            trigger_environment=staging
+          else
+            trigger_environment=prod
+          fi
+          npx --yes "trigger.dev@$TRIGGER_VERSION" deploy --env "$trigger_environment" --skip-update-check
+      - name: Record deployment
+        run: |
+          {
+            echo "### Trigger.dev sync: $TARGET_ENVIRONMENT"
+            echo "Commit: $GITHUB_SHA"
+            echo 'Task deployment completed. Runtime credentials and INGEST_URL are managed in Trigger.dev.'
+          } >> "$GITHUB_STEP_SUMMARY"

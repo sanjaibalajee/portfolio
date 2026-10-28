@@ -28,7 +28,7 @@ npx --no-install wrangler login
 npx --no-install wrangler whoami
 ```
 
-Confirm the intended Cloudflare account and Workers subdomain. In `workers/party/wrangler.jsonc`, replace the staging `ALLOWED_ORIGINS` placeholder with the exact Vercel preview/branch origin, including `https://` and without a trailing slash. Prefer a stable branch alias; allow individual preview hosts explicitly when needed. Do not allow every `*.vercel.app` site.
+Confirm the intended Cloudflare account and Workers subdomain. The staging `ALLOWED_ORIGINS` in `workers/party/wrangler.jsonc` is `https://staging.sanjaibalajee.com`. Connect that hostname to the intended Vercel staging deployment and ensure DNS/TLS work before testing. Allow other preview hosts explicitly when needed, including `https://` and without a trailing slash. Do not allow every `*.vercel.app` site.
 
 The staging Worker is named `sanjai-party-staging`. Its room and quota bindings belong to that Worker, keeping them separate from production. Environment bindings/variables are repeated explicitly because Wrangler does not inherit those fields. Preserve the top-level `v1` migration and both exported classes (`PartyRoom`, `PartyQuota`) in every future release. Do not mix a new Durable Object lifecycle format into this rollout. See [Cloudflare environments](https://developers.cloudflare.com/workers/wrangler/environments/) and [migration guidance](https://developers.cloudflare.com/durable-objects/reference/durable-objects-migrations/).
 
@@ -115,3 +115,51 @@ Keep API/negotiated Markdown/WebSocket traffic out of any Cloudflare “cache ev
 ## Rollback
 
 Roll the frontend back to its recorded prior Vercel deployment if the release fails. If only multiplayer is affected, clear both Party URLs and redeploy to leave one-phone games available. Restore a prior Worker version only when it is compatible with current stored rooms; do not delete Durable Object namespaces, remove migration history, or replay the destructive database migration. The additive likes table can remain. AI can be disabled independently by removing the Worker secret.
+
+## GitHub Actions updates
+
+The repository has two independent workflows:
+
+| Workflow | Validates on relevant pull requests | Deploys after relevant pushes to `main` |
+| --- | --- | --- |
+| [Cloudflare Party](../.github/workflows/cloudflare.yml) | Party lint, all Party tests, production and staging Worker dry runs | Production `sanjai-party` Worker |
+| [Trigger.dev sync](../.github/workflows/trigger.yml) | Sync lint, generated Next.js types, application types and isolated server regressions | Production tasks in the project from `trigger.config.ts` |
+
+Source, shared code, dependencies, Node version and each workflow's own file are included in its path filters. Blog-only edits do not redeploy either service. Pull requests run validation without deployment credentials. Validation does not execute the scheduled LeetCode task or make live database writes.
+
+Both workflows also offer **Run workflow** with a `staging` or `production` choice. The default is staging. Production requires the latest `main` commit; a feature branch cannot deploy production. Deployments for each service/environment run one at a time without cancelling an active deployment. Jobs use the existing GitHub `Preview` and `Production` environments and respect their protection rules.
+
+### Configure GitHub credentials once
+
+In [repository Actions secrets](https://github.com/sanjaibalajee/portfolio/settings/secrets/actions), add:
+
+| Secret | Purpose |
+| --- | --- |
+| `CLOUDFLARE_ACCOUNT_ID` | The account containing the Party Workers |
+| `CLOUDFLARE_API_TOKEN` | An API token scoped to that account, with the permissions needed to edit the Workers and their Durable Object bindings |
+| `TRIGGER_ACCESS_TOKEN` | A production deployment key for the project in `trigger.config.ts` |
+| `TRIGGER_STAGING_ACCESS_TOKEN` | A separate staging deployment key; needed only for manual Trigger.dev staging deployments |
+
+Use Cloudflare's [CI authentication instructions](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/) to scope the token. Use a Trigger.dev environment API key with **Deploy only** access, following its [GitHub Actions instructions](https://trigger.dev/docs/github-actions). Each Trigger.dev key must match the selected environment. Keys can instead be stored in the matching GitHub environment with the same names; environment secrets take precedence over repository secrets.
+
+The GitHub CLI can prompt for each secret without placing its value in command history:
+
+```sh
+gh secret set CLOUDFLARE_ACCOUNT_ID
+gh secret set CLOUDFLARE_API_TOKEN
+gh secret set TRIGGER_ACCESS_TOKEN
+# Only if using Trigger.dev staging:
+gh secret set TRIGGER_STAGING_ACCESS_TOKEN
+```
+
+For Cloudflare staging, set the repository Actions **variable** `PARTY_STAGING_ALLOWED_ORIGINS` to `https://staging.sanjaibalajee.com`, matching the staging Worker config. Multiple exact origins may be comma-separated, without spaces or trailing slashes. The workflow checks this value and overrides the tracked staging allowlist only for that deployment. It rejects missing values, wildcards and the placeholder. Keep production origins in `workers/party/wrangler.jsonc`.
+
+The staging origin variable is configured for `https://staging.sanjaibalajee.com`. No deployment credentials were configured as part of adding these workflows. A deployment fails with the missing secret's name until its credentials are supplied. After merging the workflows to `main`, use [Actions](https://github.com/sanjaibalajee/portfolio/actions) to run staging validation/deployment, then follow the hosted checks above before production rollout.
+
+### Runtime configuration remains with each provider
+
+- `GROQ_API_KEY` remains a Cloudflare Worker secret, set separately for staging and production. Ordinary code deployments do not rotate it.
+- `LEETCODE_SESSION`, `LEETCODE_CSRF_TOKEN`, `INGEST_URL` and `INGEST_TOKEN` remain in the selected Trigger.dev environment. They are not copied from local `.env.trigger` or stored in Actions. Production ingest must use `https://www.sanjaibalajee.com/api/switch/ingest` directly and match Vercel's ingest token.
+- Trigger.dev deploys the task definition, including its existing 02:00 India-time schedule; the workflow does not invoke a sync. The CLI version is read from the SDK installed by `npm ci`, so it matches the lockfile instead of floating to `latest`. PR validation checks types and server regressions; bundling and provider registration occur in the authenticated deployment job.
+- Vercel continues to deploy through its existing Git integration. Neither workflow changes frontend connection URLs, deploys the frontend, applies database migrations or orders Vercel's deployment relative to the Worker. Coordinate the first rollout as described above, and keep future Worker/client changes compatible while both deploy.
+- If Cloudflare Builds or Trigger.dev's native GitHub integration is enabled for this repository, choose one deployment mechanism for each service to avoid duplicate deployments.
