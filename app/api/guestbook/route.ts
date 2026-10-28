@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { addGuestbookEntry, getGuestbookEntries } from '@/app/actions/getGuestBookEntries';
+import { guestbookBody, guestbookEntrySchema } from '@/lib/guestbook-input';
+import { sameOrigin } from '@/lib/blog-like-identity';
 
 export async function GET() {
   try {
@@ -23,32 +25,20 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const url = new URL(request.url);
+  if (!sameOrigin(request.headers.get('origin'), url.protocol, request.headers.get('host') || url.host)) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
   try {
-    const body = await request.json();
-    const { name, message } = body;
+    const body = await guestbookBody(request);
+    if (body === null) return NextResponse.json({ error: 'Request too large' }, { status: 413 });
+    let input: unknown;
+    try { input = JSON.parse(body); }
+    catch { return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 }); }
+    const parsed = guestbookEntrySchema.safeParse(input);
+    if (!parsed.success) return NextResponse.json({ error: 'Enter a name (1–100 characters) and message (1–500 characters)' }, { status: 400 });
 
-    if (!name || !message) {
-      return NextResponse.json(
-        { error: 'Name and message are required' },
-        { status: 400 }
-      );
-    }
-
-    if (name.length > 100) {
-      return NextResponse.json(
-        { error: 'Name must be less than 100 characters' },
-        { status: 400 }
-      );
-    }
-
-    if (message.length > 500) {
-      return NextResponse.json(
-        { error: 'Message must be less than 500 characters' },
-        { status: 400 }
-      );
-    }
-
-    const { entry, error } = await addGuestbookEntry({ name, message });
+    const { entry, error } = await addGuestbookEntry(parsed.data);
 
     if (error) {
       return NextResponse.json(

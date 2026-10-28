@@ -1,11 +1,16 @@
 
-'use server'
+import 'server-only';
 
 import { db, isDatabaseConfigured } from '@/db/drizzle';
 import { guestbook } from '@/db/schema';
 import { desc } from 'drizzle-orm';
+import { guestbookEntrySchema } from '@/lib/guestbook-input';
 
-export async function addGuestbookEntry(data: { name: string; message: string }) {
+export async function addGuestbookEntry(data: unknown) {
+  const parsed = guestbookEntrySchema.safeParse(data);
+  if (!parsed.success) {
+    return { entry: null, error: 'Enter a name (1–100 characters) and message (1–500 characters)' };
+  }
   if (!isDatabaseConfigured) {
     return { entry: null, error: 'Database is not configured' };
   }
@@ -14,8 +19,8 @@ export async function addGuestbookEntry(data: { name: string; message: string })
     const [newEntry] = await db
       .insert(guestbook)
       .values({
-        name: data.name,
-        message: data.message,
+        name: parsed.data.name,
+        message: parsed.data.message,
       })
       .returning();
     
