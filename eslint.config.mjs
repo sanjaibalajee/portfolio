@@ -11,6 +11,7 @@ export default defineConfig([
     "out/**",
     "build/**",
     ".trigger/**",
+    "**/.wrangler/**",
     "next-env.d.ts",
   ]),
   {

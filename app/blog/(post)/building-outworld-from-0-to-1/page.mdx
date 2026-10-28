@@ -1,0 +1,140 @@
+import { AmritMoment, EventWall, Incident } from '@/app/blog/components/fanpit-story-components'
+import { NativeAppGallery } from '@/app/blog/components/native-app-gallery'
+import { OutworldTimeline } from '@/app/blog/components/outworld-timeline'
+import { ArchitectureSketch } from '@/app/blog/components/architecture-sketch'
+import Image from 'next/image'
+
+# building outworld from 0 to 1
+
+<PostMeta date="Oct 25, 2026" dateTime="2026-10-25" />
+
+in may 2025, [tejas](https://tejassuds.com/) brought up an idea for an events platform inside fanpit. that became outworld. seventeen months later, 24 communities have listed 120 events on it, including shows still to come.
+
+i built most of it after hours, late at night and across weekends, with his direction and ideas. i wrote about those first few months in [sidequestmaxxing my way back](/blog/sidequestmaxxing-my-way-back).
+
+building helps me cope when life gets a bit much. sometimes i just want to make something because it sounds fun. ai has made it easier to follow through on those ideas, and i've been enjoying the work a lot lately.
+
+<OutworldTimeline />
+
+## the first events, may to december 2025
+
+the first version ran on flask and mongodb, hosted on app runner. by the end of june, someone could book, pay, get a ticket and get scanned at the door. we had a small ios check-in app for the people running events too.
+
+by september, communities needed seat maps, cohosts, waitlists and a way to reach their guests. i started seeing classmates book through outworld, and communities came back to run another event. seeing that happen made me want to keep working on it.
+
+<EventWall />
+
+<AmritMoment compact withMusic image="https://media.fanpit.app/banners/iBD4S8IS-42b08f9f.jpg" />
+
+## rebuilding it, march to june 2026
+
+in early 2026, i rebuilt the organizer dashboard and the public event page. in may, bolt, our ai agent, joined the dashboard to help set up and run events.
+
+posters, venue layouts and artist photos were stored in mongodb alongside the event data. every image had to go through flask, and missing file chunks could break a page. in march and april, i moved the files to s3 and cloudfront. the browser could upload them directly, and flask no longer had to serve every image.
+
+i copied the existing files over and kept the old urls working. the script could be rerun without copying the same files again. deleting the originals was a separate step.
+
+<ArchitectureSketch name="media-storage" />
+
+## keeping it running, july and august
+
+the api ran on app runner, but background jobs and scheduled reminders lived on a server i maintained myself. logs filled the disk. an update could leave the api on one version and the jobs on another. sometimes two copies of the scheduler ran and sent the same reminder twice.
+
+aws had also [closed app runner to new customers on april 30](https://aws.amazon.com/apprunner/), with no new features planned. existing customers could keep using it, but i wanted to move before more of the system depended on it.
+
+in july, i moved the api, background jobs and scheduler to ecs. they ran as separate services using the same version of the app, with one scheduler for reminders.
+
+during the move, health checks passed even while people were getting 502s. the app server was closing connections while the load balancer still expected to use them. changing the timeouts fixed it.
+
+by august, i could follow one booking through the logs, from the api to the payment update and ticket email. i also fixed rate limits that had been seeing vercel's shared address instead of the person making the request.
+
+i replaced redis cloud with valkey on aws, moving one service at a time. the old queue stayed available in case i needed to switch back.
+
+<ArchitectureSketch name="runtime-migration" />
+
+### getting tickets to people
+
+i moved ticket emails and whatsapp messages into a queue too. a booking no longer had to wait for the provider to send them, and a failed message could retry on its own. login codes still went out directly, without waiting behind event messages.
+
+<Incident when="july 25 · production" value="713" label="emails failed in an hour">
+  a revoked sendgrid key made every send fail. the code logged the failures but still marked the
+  jobs as successful. the queue removed them instead of retrying them. people weren't getting
+  their tickets.
+</Incident>
+
+after that, i added alerts for failed email sends, separate from the checks on the worker itself.
+
+invoices became a background job too, instead of being generated while handling a payment update. a retry reuses the same invoice. the files stay private, with signed links for downloads.
+
+<ArchitectureSketch name="delivery-flow" />
+
+## checkout and recovery, september
+
+the old checkout tried to reserve seats, call razorpay and start ticket delivery in one request. if razorpay created an order but the response never reached us, i couldn't tell from the timeout whether it had worked.
+
+i split checkout into steps that could recover if something stopped halfway. a mongodb transaction saves the order and reserves its seats together, so two buyers can't both get the last seat. retrying the request reuses the same checkout instead of holding more seats.
+
+a razorpay timeout now leaves the booking pending while a background job checks whether the order was created.
+
+late payments needed a separate path. if the seat hold had already expired, the system tries to reserve the seats again. if they're gone, it queues a refund. receiving the same payment update twice can't confirm the booking twice.
+
+tickets, invoices and messages happen after the payment is recorded. the worker tracks completed jobs so a restart can pick up the unfinished work.
+
+the tests now include two buyers reaching for the last seat, payment updates arriving twice and jobs stopping halfway through.
+
+<ArchitectureSketch name="checkout-flow" />
+
+## the dashboard was getting slow, september
+
+the analytics dashboard was loading raw posthog events into pandas to count them. as the data grew, opening a report could keep the database and the app busy long enough to time out.
+
+i moved the counting into postgres and built a smaller table with just the data the reports needed. it updates every fifteen minutes, adding new events instead of scanning the whole history each time. activity uploaded late by an offline phone gets picked up when it arrives.
+
+updating the reports got its own queue too, so a slow report wouldn't hold up a ticket or invoice. i kept the original data and the old way of reading it available while i compared the numbers. if they didn't match, i could switch back.
+
+<ArchitectureSketch name="analytics-migration" />
+
+## tickets could change hands, october
+
+in october i added ticket transfers. communities choose which ticket types allow it. someone with a four-seat booking can send two seats to a friend without giving up the other two.
+
+the original buyer keeps the order, invoice and any refund. the recipient gets the ticket and fills in their own registration details.
+
+the sender confirms by email, and the recipient accepts with the invited address verified. accepting a whole-ticket transfer replaces the qr, so the old ticket stops working.
+
+the holder change and the new qr are saved together. check-in rejects a scan if the ticket changed while it was being checked.
+
+pending invitations hold their seats until they're accepted, expire or close because the ticket is no longer eligible. the same seats can't be offered to two people.
+
+<ArchitectureSketch name="ticket-transfer-flow" />
+
+## back to swiftui, october 4 to 25
+
+the expo app worked, but i never quite liked how it felt. i'd look at the controls, navigation and transitions and still want them to feel more like ios.
+
+i've loved building with swiftui since college. putting a view together, running it and moving things around is still fun. i'd wanted to bring fanpit over for a while. on october 4, i started rewriting the whole app in native swiftui.
+
+claude opus 5.5 helped port the existing app to swiftui while i worked on how i wanted it to feel. i spent most of my time changing the screens and trying them again.
+
+thirteen days later, on october 17, the native version of [Fanpit Live went live on the App Store](https://apps.apple.com/in/app/fanpit-live/id6753718568). somehow, not a single app review rejection. haha. after the original expo release, that was a nice surprise.
+
+today, october 25, i made it iphone duo ready too. discovery, event details, tickets and the organizer screens all needed to work with the extra space. these are from that work in the simulator.
+
+<NativeAppGallery />
+
+codex helped with the app store screenshots too. i'd give it the device shots, try a few layouts and get the exports ready. arranging those and preparing each size used to be something i'd keep putting off. being able to ask for another version while i was still thinking about the layout made that work fun too.
+
+<figure className="not-prose my-8">
+  <a href="/images/building-outworld-from-0-to-1/codex-app-store-screenshots.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full Codex screenshot" className="block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-400">
+    <Image src="/images/building-outworld-from-0-to-1/codex-app-store-screenshots.png" alt="A Codex conversation beside a preview of Fanpit's iPhone Duo App Store screenshots, showing device layouts for tickets, hosting and event management." width={2880} height={1800} sizes="(max-width: 672px) calc(100vw - 48px), 624px" className="h-auto w-full rounded-lg border border-neutral-200 dark:border-neutral-800" />
+  </a>
+  <figcaption className="mt-3 text-center text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">putting together the iphone duo app store screenshots with codex.</figcaption>
+</figure>
+
+## why i keep building
+
+i used to get excited about an idea, build the part i liked, and leave the rest for later. with ai helping on the parts i'd usually put off, more of those ideas get finished now.
+
+i can try something, change my mind and try it again. i open the laptop because there's something i want to make, and i can get further with it in the time i have.
+
+life is so much fun with ai.

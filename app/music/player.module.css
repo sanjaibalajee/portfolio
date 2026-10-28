@@ -41,7 +41,7 @@
 
 .seek:hover,
 .seek:focus-visible {
-  --thumb: #fafafa;
+  --thumb: var(--player-active);
 }
 
 .seek:disabled {
@@ -65,8 +65,8 @@
   height: 1px;
   background: linear-gradient(
     to right,
-    #d4d4d4 0 var(--progress),
-    #404040 var(--progress) 100%
+    var(--player-active) 0 var(--progress),
+    var(--player-track) var(--progress) 100%
   );
 }
 
@@ -77,17 +77,17 @@
   appearance: none;
   border: 0;
   border-radius: 0;
-  background: #d4d4d4;
+  background: var(--player-active);
 }
 
 .volume::-moz-range-track {
   height: 1px;
-  background: #404040;
+  background: var(--player-track);
 }
 
 .volume::-moz-range-progress {
   height: 1px;
-  background: #d4d4d4;
+  background: var(--player-active);
 }
 
 .volume::-moz-range-thumb {
@@ -95,7 +95,7 @@
   height: 9px;
   border: 0;
   border-radius: 0;
-  background: #d4d4d4;
+  background: var(--player-active);
 }
 
 .bars {

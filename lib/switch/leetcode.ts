@@ -36,7 +36,7 @@ export type AcceptedSubmission = {
   submittedAt: Date;
 };
 
-/** Mirrors LANG_TO_EXTENSION in joshcai/leetcode-sync so paths stay comparable. */
+/** Stable extensions preserve submission paths across sync runs. */
 const LANGUAGE_TO_EXTENSION: Record<string, string> = {
   bash: "sh",
   c: "c",

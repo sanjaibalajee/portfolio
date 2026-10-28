@@ -1,16 +1,11 @@
-import type { Metadata } from 'next'
+import { articleStructuredData, blogMetadata, posts } from '@/lib/blog'
 
-const description = "a diff of the beliefs I've upgraded, deleted, and rewritten over the past year"
-
-export const metadata: Metadata = {
-  title: 'a year of unlearning',
-  description,
-  openGraph: {
-    title: 'a year of unlearning',
-    description,
-  },
-}
+export const metadata = blogMetadata('a-year-of-unlearning')
 
 export default function AYearOfUnlearningLayout({ children }: { children: React.ReactNode }) {
-  return children
+  const post = posts.find(post => post.slug === 'a-year-of-unlearning')!
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData(post)).replace(/</g, '\\u003c') }} />
+    {children}
+  </>
 }

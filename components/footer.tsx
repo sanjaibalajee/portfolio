@@ -6,11 +6,12 @@ export function Footer() {
       <div className="grow text-left">
         Sanjai
       </div>
-      <div>
+      <div className="flex items-center gap-4">
+        <a href="/feed.xml" className="py-1 text-neutral-900 underline underline-offset-4 dark:text-neutral-100">rss</a>
         <Link
           target="_blank"
           href="https://github.com/sanjaibalajee"
-          className="flex items-center gap-1 text-white hover:opacity-100 transition-all no-underline"
+          className="flex items-center gap-1 text-neutral-900 hover:opacity-100 transition-all no-underline dark:text-neutral-100"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

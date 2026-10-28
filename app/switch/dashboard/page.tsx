@@ -33,14 +33,14 @@ export default async function SwitchDashboardPage() {
     <section>
       <div className="flex items-baseline justify-between gap-4 mb-8">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-2">private</p>
-          <h1 className="font-semibold text-3xl tracking-tight text-neutral-100">switch.</h1>
+          <p className="text-xs uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-400 mb-2">private</p>
+          <h1 className="font-semibold text-3xl tracking-tight text-neutral-900 dark:text-neutral-100">switch.</h1>
         </div>
         <form action={async () => {
           "use server";
           await signOut({ redirectTo: "/switch" });
         }}>
-          <button className="text-xs text-neutral-500 hover:text-neutral-200 transition-colors">sign out</button>
+          <button className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors">sign out</button>
         </form>
       </div>
       <SwitchDashboard initialData={{ ...data, problems }} />

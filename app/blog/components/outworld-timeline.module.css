@@ -1,0 +1,20 @@
+/* Keep the article's prose rules from expanding the timeline rows. */
+section.timeline h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+section.timeline h3 {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+section.timeline p {
+  margin: 0.25rem 0 0;
+}
+
+section.timeline ol {
+  padding: 0;
+  list-style: none;
+}

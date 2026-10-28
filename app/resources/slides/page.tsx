@@ -1,5 +1,8 @@
 import { Footer } from "@/components/footer"
 import slides from "./slides.json"
+import { pageMetadata } from '@/lib/site'
+
+export const metadata = pageMetadata('/resources/slides', 'slides', 'presentation decks from talks and workshops.')
 
 interface Slide {
   id: string

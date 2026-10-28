@@ -3,83 +3,35 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Github } from 'lucide-react'
-
-const navItems = {
-  '/': {
-    name: 'home',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-  '/music': {
-    name: 'music',
-  },
-  '/guestbook': {
-    name: 'guestbook',
-  },
-  '/switch': {
-    name: 'switch',
-  },
-  '/resources': {
-    name: 'resources',
-  },
-}
-
-const socialLinks = {
-  'mailto:sanjaibalajee@icloud.com': {
-    name: 'email',
-  },
-  'https://github.com/sanjaibalajee': {
-    name: 'github',
-  },
-}
+import { AgentViewToggle, useAgentView } from '@/components/agent-view'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { publicPages, socialLinks } from '@/lib/site'
+import { supportsAgentView } from '@/lib/agent-routes'
 
 export function Navbar() {
   const pathname = usePathname()
-
+  const { setActive } = useAgentView()
+  if (pathname === '/party' || pathname.startsWith('/party/')) return null
   return (
-    <aside className="-ml-[8px] mb-6 tracking-tight">
-      <div className="lg:sticky lg:top-20">
-        <h1 className="font-semibold text-2xl mb-4 md:mb-8 tracking-tighter">sanjai</h1>
-        <nav
-          className="flex flex-col md:flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-          id="nav"
-        >
-          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-0 w-full">
-            <div className="flex flex-row flex-wrap items-center gap-1">
-              {Object.entries(navItems).map(([path, { name }]) => {
-                const isActive = path === '/' ? pathname === '/' : pathname.startsWith(path)
-                return (
-                  <Link
-                    key={path}
-                    href={path}
-                    className={`transition-all flex align-middle relative py-1 px-2 no-underline ${
-                      isActive
-                        ? 'text-white font-semibold'
-                        : 'text-white/70 hover:text-white'
-                    }`}
-                  >
-                    {name}
-                  </Link>
-                )
-              })}
-              <span className="hidden md:inline px-2"></span>
-              {Object.entries(socialLinks).map(([path, { name }]) => {
-                return (
-                  <Link
-                    key={path}
-                    href={path}
-                    className="transition-all text-white hover:opacity-70 flex align-middle items-center gap-1 relative py-1 px-2 no-underline"
-                  >
-                    {name === 'github' && <Github size={16} />}
-                    {name}
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        </nav>
+    <header className="mb-8 tracking-tight">
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <Link href="/" onClick={() => setActive(false)} className="text-2xl font-semibold tracking-tighter text-neutral-900 dark:text-neutral-100">sanjai</Link>
+        <div className="flex items-center gap-2">
+          {supportsAgentView(pathname) && <AgentViewToggle />}
+          <ThemeToggle />
+        </div>
       </div>
-    </aside>
+      <nav aria-label="Primary" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        {publicPages.map(({ href, label }) => {
+          const active = href === '/' ? pathname === '/' : pathname.startsWith(href)
+          return <Link key={href} href={href} onClick={() => setActive(false)} aria-current={active ? 'page' : undefined} className={`py-1 transition-colors ${active ? 'font-semibold text-neutral-950 dark:text-neutral-100' : 'text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100'}`}>{label}</Link>
+        })}
+        {socialLinks.map(({ href, label }) => (
+          <a key={href} href={href} className="flex items-center gap-1 py-1 text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100">
+            {label === 'github' && <Github size={14} aria-hidden="true" />}{label}
+          </a>
+        ))}
+      </nav>
+    </header>
   )
 }

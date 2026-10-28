@@ -20,6 +20,13 @@ export const guestbook = pgTable("guestbook", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// A signed anonymous browser cookie identifies a reader; no account or IP is stored.
+export const blogLikes = pgTable("blog_likes", {
+  postSlug: varchar("post_slug", { length: 200 }).notNull(),
+  visitorHash: varchar("visitor_hash", { length: 64 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, like => [primaryKey({ columns: [like.postSlug, like.visitorHash] })]);
+
 export const users = pgTable("users", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   name: text("name"),

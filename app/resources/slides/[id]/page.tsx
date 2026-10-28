@@ -1,6 +1,14 @@
 import { notFound } from "next/navigation"
 import { Footer } from "@/components/footer"
 import slides from "../slides.json"
+import { pageMetadata } from '@/lib/site'
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const deck = slides.slides.find(deck => deck.id === id)
+  if (!deck) notFound()
+  return pageMetadata(`/resources/slides/${id}`, deck.title, deck.event || 'slides from sanjai balajee.')
+}
 
 interface Slide {
   id: string

@@ -1,47 +1,36 @@
 import { Footer } from "@/components/footer"
-import blogposts from "@/app/blog/blogposts.json"
+import { AgentViewSwitch } from '@/components/agent-view'
+import type { Metadata } from 'next'
+import { getBlogPosts } from '@/lib/blog'
+import { PostList } from '@/components/post-list'
+import { pageMetadata } from '@/lib/site'
 
-interface BlogPost {
-  slug: string
-  date: string
-  title: string
+export const metadata: Metadata = {
+  ...pageMetadata('/blog', 'blog', 'notes on building, sidequests and the things i learn along the way.'),
+  alternates: { canonical: '/blog', types: { 'text/markdown': '/blog/index.md', 'application/rss+xml': '/feed.xml' } },
 }
 
-export default function Blog() {
-  const posts: BlogPost[] = blogposts.posts
+export default async function Blog() {
+  const posts = await getBlogPosts()
 
   return (
+    <AgentViewSwitch>
     <div className="flex flex-col min-h-[calc(100vh-200px)]">
       <div className="flex-grow">
         <section>
           <h1 className="font-semibold text-3xl mb-8 tracking-tight text-neutral-900 dark:text-neutral-100">
             blog
           </h1>
+          <p className="mb-8 text-sm text-neutral-600 dark:text-neutral-400">notes from building and everything around it. <a href="/feed.xml" className="underline underline-offset-4">follow via rss ↗</a></p>
           {posts.length === 0 ? (
             <p className="text-neutral-600 dark:text-neutral-400">no blogs yet</p>
           ) : (
-            <div className="space-y-4">
-              {posts.map((post) => (
-                <a
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="block group hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg p-4 -mx-4 transition-colors"
-                >
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                    <h2 className="font-medium text-base sm:text-lg tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {post.title}
-                    </h2>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400 whitespace-nowrap">
-                      {post.date}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <PostList posts={posts} />
           )}
         </section>
       </div>
       <Footer />
     </div>
+    </AgentViewSwitch>
   )
 }

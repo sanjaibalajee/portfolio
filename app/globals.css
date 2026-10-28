@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 
 ::selection {
   background-color: #47a3f3;
@@ -6,6 +7,9 @@
 }
 
 :root {
+  color-scheme: light;
+  --player-active: #404040;
+  --player-track: #d4d4d4;
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -17,20 +21,22 @@
   --sh-entity: #e25a1c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
-  }
-  html {
-    color-scheme: dark;
-  }
+.dark {
+  color-scheme: dark;
+  --player-active: #d4d4d4;
+  --player-track: #404040;
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
 }
 
 html {
-  min-width: 360px;
+  min-width: 320px;
+}
+
+body {
+  @apply bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100;
 }
 
 .prose .anchor {
@@ -139,7 +145,7 @@ input[type='email'] {
 }
 
 .switch-input {
-  @apply w-full bg-transparent border border-neutral-800 px-2.5 py-2 text-sm text-neutral-200 outline-none focus:border-neutral-500 transition-colors;
+  @apply w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-2.5 py-2 text-sm text-neutral-800 dark:text-neutral-200 outline-none focus:border-neutral-500 transition-colors;
 }
 
 .switch-code .shiki {

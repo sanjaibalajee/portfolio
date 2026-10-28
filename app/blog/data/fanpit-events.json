@@ -1,0 +1,1213 @@
+{
+  "generatedAt": "2026-10-25",
+  "excludedBrandSlugs": [
+    "fanpit"
+  ],
+  "criteria": "Original curated archive, including five historical private-event posters, refreshed with all pages of the public past and upcoming Outworld event listings on 2026-10-25; excludes Fanpit and blank-brand records. Upcoming dates are scheduled events, not completed events.",
+  "events": [
+    {
+      "title": "Alt Rising",
+      "slug": "kLGqghjf",
+      "date": "2026-11-21",
+      "visibility": "public",
+      "brand": "Bhavya on Broadway",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/6c302657.jpg"
+    },
+    {
+      "title": "Omnivoid.live | edition 10",
+      "slug": "L2reCOdm",
+      "date": "2026-11-15",
+      "visibility": "public",
+      "brand": "Omnivoid Labs",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/cbbdb408.jpg"
+    },
+    {
+      "title": "Kerala Rocks  India Tour: Thakara, Evergreen & Charlie Now",
+      "slug": "3SebuoTC",
+      "date": "2026-11-14",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/4cb23767.jpg"
+    },
+    {
+      "title": "FGR's The Listening sessions - Are friends electric?",
+      "slug": "crF2Su4e",
+      "date": "2026-11-01",
+      "visibility": "public",
+      "brand": "Focus Group Radio",
+      "venue": "A5, second  Floor, 2nd Main Rd, Thiruvalluvar Nagar, Thiruvanmiyur, Chennai, Tamil Nadu 600041",
+      "city": "",
+      "image": "https://media.fanpit.app/banners/db287cc7.jpg"
+    },
+    {
+      "title": "Metal Munnetra Kazhagam V: TOOL & DEATH",
+      "slug": "lM6619V4",
+      "date": "2026-10-31",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/56eb56b5.jpg"
+    },
+    {
+      "title": "Ninaivu Maaligai | நினைவு மாளிகை",
+      "slug": "cJ5GDmip",
+      "date": "2026-10-17",
+      "visibility": "public",
+      "brand": "Siennor",
+      "venue": "Museum Theatre",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/cJ5GDmip-a6feef2d.jpg"
+    },
+    {
+      "title": "Permanent Vacation 3: Easy Wanderlings, Adi Rao & Tarini",
+      "slug": "BFFNUVMy",
+      "date": "2026-10-10",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/aaaeaa69.jpg"
+    },
+    {
+      "title": "Anjali Manoharan, EP Show.",
+      "slug": "V0PfdFCu",
+      "date": "2026-10-03",
+      "visibility": "public",
+      "brand": "Bhavya on Broadway",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/d5d5761f.jpg"
+    },
+    {
+      "title": "NV Vigneshwer Karthik Live",
+      "slug": "A7ZagCBM",
+      "date": "2026-09-25",
+      "visibility": "public",
+      "brand": "NV Vigneshwer Karthik",
+      "venue": "The Nook - Music and Entertainment",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/a76b5157.jpg"
+    },
+    {
+      "title": "SARAVEDI Ed.2: Rhythm Shaw, Adarsh Arjun & Vihara",
+      "slug": "tSA4Ozi0",
+      "date": "2026-09-19",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/tSA4Ozi0-fdcfc747.jpg"
+    },
+    {
+      "title": "Brutal Carnage XVII Featuring Trojan Horse, XrepeatX, Moral Putrefaction and Severed Extremities",
+      "slug": "YDPgw8bj",
+      "date": "2026-09-12",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/8b0da739.jpg"
+    },
+    {
+      "title": "Permanent Vacation 2: Siennor Trio, Blues Conscience, The Broadway Addicts & Srie's Bessybop",
+      "slug": "fxgWc1WO",
+      "date": "2026-08-29",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/e2aff4cd.jpg"
+    },
+    {
+      "title": "Listening Session #4: Joni Mitchell's The Hissing of Summer Lawns",
+      "slug": "VYkMRnXP",
+      "date": "2026-08-16",
+      "visibility": "public",
+      "brand": "MotherTongue Music",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/VYkMRnXP-40412036.jpg"
+    },
+    {
+      "title": "Unspoken - A language of the eyes",
+      "slug": "bDmIQZ9J",
+      "date": "2026-08-01",
+      "visibility": "public",
+      "brand": "Vinyl & Brew",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/5a046fcc.jpg"
+    },
+    {
+      "title": "Brutal Carnage XVI : CHAOS, Incendiarius, MANGAS & Drumtoid",
+      "slug": "HE2kkpjF",
+      "date": "2026-08-01",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/HE2kkpjF-81499d26.jpg"
+    },
+    {
+      "title": "Unwanted Saga (Chennai) FREE ENTRY for students",
+      "slug": "STq0E6Dj",
+      "date": "2026-07-26",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "Medai - The Stage Chennai",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/a339b661.jpg"
+    },
+    {
+      "title": "FIFA Finals Watch Party",
+      "slug": "C9Fs2W7G",
+      "date": "2026-07-19",
+      "visibility": "private",
+      "brand": "In Real Life - Chennai",
+      "venue": "FC MARINA TURF (Thiruvanmiyur Beach)",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/3de38a90.jpg"
+    },
+    {
+      "title": "Storytelling open mic by thinnai. Theme-Pandemic",
+      "slug": "AA7BxzWE",
+      "date": "2026-07-18",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/974c1d61.jpg"
+    },
+    {
+      "title": "Permanent Vacation Edition 1 Feat. STEVIE, Big Sam & Spotlight",
+      "slug": "3pCKiW13",
+      "date": "2026-07-18",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/53b1d93e.jpg"
+    },
+    {
+      "title": "Unwanted: Saga Goa Edition",
+      "slug": "tU7wqM5I",
+      "date": "2026-07-05",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "Sadhana Dell 'Arte",
+      "city": "Mersi Tem",
+      "image": "https://media.fanpit.app/banners/40129378.jpg"
+    },
+    {
+      "title": "Unwanted: Saga MUMBAI edition",
+      "slug": "nVe8ATPI",
+      "date": "2026-07-04",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "3 Art House",
+      "city": "Mumbai",
+      "image": "https://media.fanpit.app/banners/13df24a2.jpg"
+    },
+    {
+      "title": "WILD FLOW",
+      "slug": "Fs9lDeSB",
+      "date": "2026-07-04",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Paddle Lounge - Pickleball",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/Fs9lDeSB-91262a66.jpg"
+    },
+    {
+      "title": "Jazz & Blues w/ d!phn",
+      "slug": "6ZyeNhBn",
+      "date": "2026-07-04",
+      "visibility": "public",
+      "brand": "Vinyl & Brew",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/d8d4931d.jpg"
+    },
+    {
+      "title": "Unwanted: Saga HYD edition",
+      "slug": "w1VWyNrj",
+      "date": "2026-07-03",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "The Street Comedy Club Hyderabad",
+      "city": "Hyderabad",
+      "image": "https://media.fanpit.app/banners/aac24d91.jpg"
+    },
+    {
+      "title": "Listening Session 3: Fresh by Sly & The Family Stone",
+      "slug": "uQS4xnB5",
+      "date": "2026-06-28",
+      "visibility": "public",
+      "brand": "MotherTongue Music",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/74ceb809.jpg"
+    },
+    {
+      "title": "Book vs Movie",
+      "slug": "n4pe4Gtz",
+      "date": "2026-06-27",
+      "visibility": "public",
+      "brand": "The Town Library",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/bf6c368b.jpg"
+    },
+    {
+      "title": "Mini Hyrox",
+      "slug": "X63PApGH",
+      "date": "2026-06-27",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Momentum Studio",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/X63PApGH-dd12c6b1.jpg"
+    },
+    {
+      "title": "PILATES EDITION Part 1",
+      "slug": "U7PdXYuG",
+      "date": "2026-06-27",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Oyster Pilates",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/U7PdXYuG-03befb51.jpg"
+    },
+    {
+      "title": "Coffee, Kadhal & Jazz",
+      "slug": "M0JB0xwN",
+      "date": "2026-06-27",
+      "visibility": "public",
+      "brand": "AlterNation Chennai",
+      "venue": "Brews & Beyond, Besant Nagar",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/M0JB0xwN-8fd1d86a.jpg"
+    },
+    {
+      "title": "Funcation to Pondicherry",
+      "slug": "4vfX4uwh",
+      "date": "2026-06-26",
+      "visibility": "private",
+      "brand": "Social Age",
+      "venue": "Ostel.in Pondicherry (Auroville)",
+      "city": "Puducherry",
+      "image": "https://media.fanpit.app/banners/4vfX4uwh-8292594a.jpg"
+    },
+    {
+      "title": "Blind Friending",
+      "slug": "vDt7588v",
+      "date": "2026-06-21",
+      "visibility": "private",
+      "brand": "In Real Life - Chennai",
+      "venue": "Lbr Tower",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/cc400da8.jpg"
+    },
+    {
+      "title": "Unwanted: Saga (Kochi)",
+      "slug": "5PPDLg8f",
+      "date": "2026-06-21",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "Spotlight Socials",
+      "city": "Kochi",
+      "image": "https://media.fanpit.app/banners/599517c0.jpg"
+    },
+    {
+      "title": "Stretch & Settle - International Yoga Day Edition",
+      "slug": "aMqBZ0yl",
+      "date": "2026-06-20",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Hi O Toes",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/aMqBZ0yl-ae150f23.jpg"
+    },
+    {
+      "title": "Storytelling open mic ,theme-WHAT IF!? By thinnai",
+      "slug": "QWyy2g7M",
+      "date": "2026-06-20",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/edc346b9.jpg"
+    },
+    {
+      "title": "Harry Potter Sundowner",
+      "slug": "FkckWPNk",
+      "date": "2026-06-20",
+      "visibility": "private",
+      "brand": "In Real Life - Chennai",
+      "venue": "Jekyll & Hyde Resto Club",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/FkckWPNk-623b651a.jpg"
+    },
+    {
+      "title": "Visaga",
+      "slug": "DzZi3bgt",
+      "date": "2026-06-20",
+      "visibility": "public",
+      "brand": "Vinyl & Brew",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/201f457d.jpg"
+    },
+    {
+      "title": "Summer Bang Presents: Hometown Heat",
+      "slug": "19Qkgs6t",
+      "date": "2026-06-20",
+      "visibility": "public",
+      "brand": "The Summer Bang",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/19Qkgs6t-5b7807a8.jpg"
+    },
+    {
+      "title": "Beyond The Wall",
+      "slug": "GCkEUJva",
+      "date": "2026-06-14",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Fitrock Arena Chetpet",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/GCkEUJva-977a157a.jpg"
+    },
+    {
+      "title": "Dream Release Party ft. Lucky",
+      "slug": "7fWRsfYa",
+      "date": "2026-06-14",
+      "visibility": "public",
+      "brand": "Shorefire Events",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/b225761a.jpg"
+    },
+    {
+      "title": "The Comeback Run",
+      "slug": "tnrpEFtN",
+      "date": "2026-06-06",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Sando Society",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/tnrpEFtN-e75e9653.jpg"
+    },
+    {
+      "title": "Unwanted: Saga",
+      "slug": "FPR4eqL6",
+      "date": "2026-06-06",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "The Krib, Bar and Eatery",
+      "city": "Guwahati",
+      "image": "https://media.fanpit.app/banners/8a9d0735.jpg"
+    },
+    {
+      "title": "Breaktime with Saga",
+      "slug": "PT9rtf49",
+      "date": "2026-06-05",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "Cafe Craft",
+      "city": "Guwahati",
+      "image": "https://media.fanpit.app/banners/e9e300df.jpg"
+    },
+    {
+      "title": "SustainabilATTi",
+      "slug": "xBB02qvu",
+      "date": "2026-05-30",
+      "visibility": "public",
+      "brand": "Kalaki Collective",
+      "venue": "The Learning Community at Quest",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/09fea631.jpg"
+    },
+    {
+      "title": "SIENNOR trio LIVE - Oli Vattam | கானம் - கவிதை - காட்சி",
+      "slug": "pOtoKBeL",
+      "date": "2026-05-30",
+      "visibility": "public",
+      "brand": "Siennor",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/pOtoKBeL-a66f2ed6.jpg"
+    },
+    {
+      "title": "Harry Potter Sundowner",
+      "slug": "gTPF2qkE",
+      "date": "2026-05-30",
+      "visibility": "public",
+      "brand": "In Real Life - Chennai",
+      "venue": "Jekyll & Hyde Resto Club",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/6d5e2089.jpg"
+    },
+    {
+      "title": "Motherjane Dobāreh Listening Session || Chennai",
+      "slug": "F4xf5Gao",
+      "date": "2026-05-24",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/f43e0a25.jpg"
+    },
+    {
+      "title": "Brutal Carnage XV: Godless & Maneating Orchid",
+      "slug": "nONiEkzJ",
+      "date": "2026-05-22",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/nONiEkzJ-589fe7ee.jpg"
+    },
+    {
+      "title": "The Angular Festival",
+      "slug": "Kmv1ejH1",
+      "date": "2026-05-16",
+      "visibility": "public",
+      "brand": "Focus Group Radio",
+      "venue": "The Palomar by Crossway",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/c072d79b.jpg"
+    },
+    {
+      "title": "STORYTELLING OPEN MIC- exclusive only for mother's.",
+      "slug": "G6g55dYl",
+      "date": "2026-05-16",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/b0b5632a.jpg"
+    },
+    {
+      "title": "Mother's Day Out",
+      "slug": "X8ADMMzQ",
+      "date": "2026-05-10",
+      "visibility": "public",
+      "brand": "Saga",
+      "venue": "The Learning Community at Quest",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/0570a122.jpg"
+    },
+    {
+      "title": "Mafia Night",
+      "slug": "fqNkQ82h",
+      "date": "2026-05-09",
+      "visibility": "public",
+      "brand": "In Real Life - Chennai",
+      "venue": "Lbr Tower",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/726123f5.jpg"
+    },
+    {
+      "title": "\"I Have Nowhere to Wear This\" Party",
+      "slug": "Mwp7skxP",
+      "date": "2026-05-02",
+      "visibility": "public",
+      "brand": "In Real Life - Chennai",
+      "venue": "Right Choice Swathi Tejas",
+      "city": "Nandambakkam",
+      "image": "https://media.fanpit.app/banners/e250a581.jpg"
+    },
+    {
+      "title": "Gharana gayaki",
+      "slug": "2XB3OErG",
+      "date": "2026-04-25",
+      "visibility": "public",
+      "brand": "Nivriti",
+      "venue": "Delhi",
+      "city": "",
+      "image": "https://media.fanpit.app/banners/2XB3OErG-52db21d6.jpg"
+    },
+    {
+      "title": "Down the Rabbit Hole - A Conspiracy Evening",
+      "slug": "8x9PKiY7",
+      "date": "2026-04-19",
+      "visibility": "public",
+      "brand": "In Real Life - Chennai",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/4976c597.jpg"
+    },
+    {
+      "title": "Why...lie? Storytelling openmic by THINNAI",
+      "slug": "aOg6Bmpx",
+      "date": "2026-04-11",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/aOg6Bmpx-496e24c6.jpg"
+    },
+    {
+      "title": "Strangers Colour Hunt 🌈🔍",
+      "slug": "L7Xdck25",
+      "date": "2026-04-11",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Edward Elliot's Beach",
+      "city": "",
+      "image": "https://media.fanpit.app/banners/L7Xdck25-a7b0b352.jpg"
+    },
+    {
+      "title": "Shankara in Chennai",
+      "slug": "8Gj3Y3vN",
+      "date": "2026-04-04",
+      "visibility": "public",
+      "brand": "Bhavya on Broadway",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/8Gj3Y3vN-e19c356a.jpg"
+    },
+    {
+      "title": "Confessions of a Mentalist By Zaid Khan",
+      "slug": "ZdmOxyGL",
+      "date": "2026-03-29",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "The Corner Company",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/ZdmOxyGL-47a3ad76.jpg"
+    },
+    {
+      "title": "ME2CHAT - Live in Chennai [Show 2]",
+      "slug": "Gpcm89yf",
+      "date": "2026-03-21",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Punch - Unpaid Therapist",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/Gpcm89yf-5ab8dad8.jpg"
+    },
+    {
+      "title": "ME2CHAT - Live in Chennai [Show 1]",
+      "slug": "CpxXLjZh",
+      "date": "2026-03-21",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Punch - Unpaid Therapist",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/CpxXLjZh-6612017b.jpg"
+    },
+    {
+      "title": "Sunthar V - Live in Chennai",
+      "slug": "QepiJ6I2",
+      "date": "2026-03-20",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Trinity Studio",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/QepiJ6I2-96b95e23.jpg"
+    },
+    {
+      "title": "STORYTELLING OPENMIC-THE SPOT",
+      "slug": "PZObNskN",
+      "date": "2026-03-14",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/PZObNskN-1e05fd1c.jpg"
+    },
+    {
+      "title": "Sunthar V - Live in Chennai",
+      "slug": "WElmMEQp",
+      "date": "2026-03-12",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Trinity Studio",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/WElmMEQp-c01567ec.jpg"
+    },
+    {
+      "title": "Brutal Carnage XIV Featuring Amorphia, Vidyut & Septic Isle",
+      "slug": "RsAoVGLn",
+      "date": "2026-03-07",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/RsAoVGLn-084f1e3e.jpg"
+    },
+    {
+      "title": "Siennor Trio LIVE - Oli Vattam 5",
+      "slug": "xvs84qDp",
+      "date": "2026-02-21",
+      "visibility": "public",
+      "brand": "Siennor",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/xvs84qDp-56fabe72.jpg"
+    },
+    {
+      "title": "Storytelling Open Mic (Themed) | SupporTHING",
+      "slug": "aOcTr4rQ",
+      "date": "2026-02-21",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/aOcTr4rQ-b1b8e778.jpg"
+    },
+    {
+      "title": "The Girl Gang Project - Galentine's Day Party",
+      "slug": "dzYZ7pMl",
+      "date": "2026-02-15",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Q Bar",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/dzYZ7pMl-3b12de32.jpg"
+    },
+    {
+      "title": "Big Picnik | Valentine's Edition",
+      "slug": "NxxTa8Ug",
+      "date": "2026-02-14",
+      "visibility": "public",
+      "brand": "Circle of Love",
+      "venue": "Green Meadows Resort",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/NxxTa8Ug-d6fe3c71.jpg"
+    },
+    {
+      "title": "Ragaverse by RINI | Chennai",
+      "slug": "vFOkonTx",
+      "date": "2026-02-08",
+      "visibility": "public",
+      "brand": "Quriosity",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/vFOkonTx-a56d7122.jpg"
+    },
+    {
+      "title": "Carnatic Jazz | A Fusion Evening",
+      "slug": "lBQof3UH",
+      "date": "2026-02-08",
+      "visibility": "public",
+      "brand": "Vinyl & Brew",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/lBQof3UH-adfd9cf5.jpg"
+    },
+    {
+      "title": "Omnivoid | Edition 005",
+      "slug": "paVrcDdw",
+      "date": "2026-02-07",
+      "visibility": "public",
+      "brand": "Omnivoid Labs",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/paVrcDdw-84f68429.jpg"
+    },
+    {
+      "title": "🃏 BOYS ATTI – POKER GAME NIGHT",
+      "slug": "HM7ei5yn",
+      "date": "2026-01-31",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Chennai",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/HM7ei5yn-a36ab262.jpg"
+    },
+    {
+      "title": "9 Grader Nord Live at Aura Studios",
+      "slug": "x3sffVIa",
+      "date": "2026-01-30",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/x3sffVIa-390034ce.jpg"
+    },
+    {
+      "title": "Storytelling Open Mic | AHA Moments",
+      "slug": "BKVw5zhx",
+      "date": "2026-01-24",
+      "visibility": "public",
+      "brand": "Thinnai",
+      "venue": "ISAI - The Art Café",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/BKVw5zhx-0857495d.jpg"
+    },
+    {
+      "title": "Moshpet Strike 1 | Featuring Frozen Factory (Finland) & Perception Delta | Jan 10th | Aura Studios",
+      "slug": "glF09fRf",
+      "date": "2026-01-10",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/glF09fRf-dbe4d6a2.jpg"
+    },
+    {
+      "title": "Mothertongue Music: Listening Session 3",
+      "slug": "OzApUPpz",
+      "date": "2026-01-10",
+      "visibility": "public",
+      "brand": "MotherTongue Music",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/OzApUPpz-83d918e9.jpg"
+    },
+    {
+      "title": "Ragas in the Moonlight - II",
+      "slug": "VUefcaWO",
+      "date": "2025-12-29",
+      "visibility": "public",
+      "brand": "Nivriti",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/VUefcaWO-68235f98.jpg"
+    },
+    {
+      "title": "Ragas in the Moonlight - I",
+      "slug": "8F6c0zU9",
+      "date": "2025-12-28",
+      "visibility": "public",
+      "brand": "Nivriti",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/8F6c0zU9-153bfa66.jpg"
+    },
+    {
+      "title": "A Christmas Musical Showcase",
+      "slug": "ZqvcHkN9",
+      "date": "2025-12-23",
+      "visibility": "public",
+      "brand": "Bhavya on Broadway",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/ZqvcHkN9-e893533f.jpg"
+    },
+    {
+      "title": "The Girl Gang Project- Secret Santa",
+      "slug": "VTl0aXUe",
+      "date": "2025-12-21",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Wild garden cafe",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/VTl0aXUe-436c87cc.jpg"
+    },
+    {
+      "title": "Omnivoid | Edition 004",
+      "slug": "NYMOnzeS",
+      "date": "2025-12-21",
+      "visibility": "public",
+      "brand": "Omnivoid Labs",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/NYMOnzeS-9438a9e8.jpg"
+    },
+    {
+      "title": "Amrit Ramnath | An Exclusive Unplugged Performance",
+      "slug": "iBD4S8IS",
+      "date": "2025-12-20",
+      "visibility": "public",
+      "brand": "Amrit Ramnath",
+      "venue": "Arena - The Art Experience",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/iBD4S8IS-42b08f9f.jpg"
+    },
+    {
+      "title": "2026 Vision Board Party",
+      "slug": "UxqgT2Z2",
+      "date": "2025-12-20",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Ciclo Cafe, Kotturpuram",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/UxqgT2Z2-91765006.jpg"
+    },
+    {
+      "title": "Sharmi Surianarain Live  | Solo",
+      "slug": "nLWDoyxn",
+      "date": "2025-12-19",
+      "visibility": "public",
+      "brand": "Quriosity",
+      "venue": "Musée Musical",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/nLWDoyxn-711d071d.jpg"
+    },
+    {
+      "title": "Sushi Making Experience",
+      "slug": "lUV5daeP",
+      "date": "2025-12-14",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Asia kitchen by Mainland China",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/lUV5daeP-c9eaa489.jpg"
+    },
+    {
+      "title": "Somdev Devvarman Live - An Exclusive Intimate Concert Experience",
+      "slug": "nrVG2qEw",
+      "date": "2025-12-13",
+      "visibility": "private",
+      "brand": "Quriosity",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/nrVG2qEw-2fb94b45.jpg"
+    },
+    {
+      "title": "Mothertongue Music: Listening Session 2",
+      "slug": "JsJjbJzJ",
+      "date": "2025-12-12",
+      "visibility": "public",
+      "brand": "MotherTongue Music",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/JsJjbJzJ-10c36a8b.jpg"
+    },
+    {
+      "title": "F1 Season Finale Race Night – Chennai",
+      "slug": "FcaxGFsr",
+      "date": "2025-12-07",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Secret Story Chennai",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/FcaxGFsr-2dd927b7.jpg"
+    },
+    {
+      "title": "HYROX - MIXED  DOUBLES",
+      "slug": "yzMdW6hX",
+      "date": "2025-12-06",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Momentum Studio",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/yzMdW6hX-0ab971ba.jpg"
+    },
+    {
+      "title": "Brew Like a Barista: A Specialty Coffee Experience",
+      "slug": "XLclQEba",
+      "date": "2025-12-06",
+      "visibility": "public",
+      "brand": "Social Age",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/XLclQEba-a02dab62.jpg"
+    },
+    {
+      "title": "The East Coast Jazz Movement: Session 2",
+      "slug": "venPZUYT",
+      "date": "2025-11-22",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/venPZUYT-f2d05c30.jpg"
+    },
+    {
+      "title": "RAJA NOW HAS FRIENDS  ★  BY SAKRÉ",
+      "slug": "5xh92FlP",
+      "date": "2025-11-14",
+      "visibility": "public",
+      "brand": "Kalaki Collective",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/5xh92FlP-1c7d1aa2.jpg"
+    },
+    {
+      "title": "Vector Run | Parkour",
+      "slug": "3SOjKu4R",
+      "date": "2025-11-09",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Chennai Parkour (ECR) | Gym & Fitness Studio | Calisthenics",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/3SOjKu4R-7e6b2b45.jpg"
+    },
+    {
+      "title": "Omnivoid | edition 003",
+      "slug": "uRMP6QGV",
+      "date": "2025-11-02",
+      "visibility": "public",
+      "brand": "Omnivoid Labs",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/uRMP6QGV-22cf932a.jpg"
+    },
+    {
+      "title": "Metal Munnetra Kazhagam IV : Tribute to Meshuggah & Gojira",
+      "slug": "zhaTkZnZ",
+      "date": "2025-10-31",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/zhaTkZnZ-c2972d25.jpg"
+    },
+    {
+      "title": "STEVIE Acoustic - Live at Vinyl & Brew",
+      "slug": "mM6ZWp7g",
+      "date": "2025-10-26",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/mM6ZWp7g-0e384d76.jpg"
+    },
+    {
+      "title": "\"Infinite\" Album Launch Concert featuring Somdev Devvarman & Tarini | Home Brewed IV",
+      "slug": "YfNzYzDC",
+      "date": "2025-10-18",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/YfNzYzDC-8132d6be.jpg"
+    },
+    {
+      "title": "Summer Bang: Bang Originals VINYL AND BREW",
+      "slug": "hPpjDuAq",
+      "date": "2025-10-12",
+      "visibility": "public",
+      "brand": "The Summer Bang",
+      "venue": "Vinyl & Brew",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/hPpjDuAq-83b59b1c.jpg"
+    },
+    {
+      "title": "THE PULSE : PHOENIX EDITION",
+      "slug": "FnGEXKoo",
+      "date": "2025-10-04",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Phoenix Marketcity",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/FnGEXKoo-92cbca75.jpg"
+    },
+    {
+      "title": "Brutal Carnage XIII : Demonic Resurrection, GODIA and Perception Delta",
+      "slug": "ZiPnC2ut",
+      "date": "2025-09-27",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/ZiPnC2ut-480a245e.jpg"
+    },
+    {
+      "title": "Oxygen the band - Live at Aura Immerse",
+      "slug": "nKKh6nsE",
+      "date": "2025-09-21",
+      "visibility": "public",
+      "brand": "The Chennai Scene",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/nKKh6nsE-195e9c6c.jpg"
+    },
+    {
+      "title": "GENESIS : CHAPTER I",
+      "slug": "ie0Qlo2Z",
+      "date": "2025-09-20",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "ECR",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/ie0Qlo2Z-f9f6398b.jpg"
+    },
+    {
+      "title": "Grey Shack - Inn Gloom Album Launch",
+      "slug": "wr0sFKqf",
+      "date": "2025-09-13",
+      "visibility": "public",
+      "brand": "Metal Chennai",
+      "venue": "The Spotted Deer",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/wr0sFKqf-0a1b83fc.jpg"
+    },
+    {
+      "title": "Omnivoid | Edition 002",
+      "slug": "9aBdBr4U",
+      "date": "2025-09-07",
+      "visibility": "public",
+      "brand": "Omnivoid Labs",
+      "venue": "Aura Studios",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/9aBdBr4U-651fff31.jpg"
+    },
+    {
+      "title": "RUN & BREW",
+      "slug": "uNCVC79W",
+      "date": "2025-08-31",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "halt.",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/uNCVC79W-e69ddb55.jpg"
+    },
+    {
+      "title": "HALT  &  BOLT",
+      "slug": "atzvQnQ1",
+      "date": "2025-08-23",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "halt.",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/atzvQnQ1-3af4381b.jpg"
+    },
+    {
+      "title": "THE SOCIAL SIP",
+      "slug": "nO2G2Z0k",
+      "date": "2025-08-16",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Budan House - Alwarpet",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/nO2G2Z0k-0735ac39.jpg"
+    },
+    {
+      "title": "IRON HOUR",
+      "slug": "HWrjwHpG",
+      "date": "2025-08-16",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "THE SUPES CLUB ANNANAGAR - Best Premium Gym in Chennai",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/HWrjwHpG-1590c0e0.jpg"
+    },
+    {
+      "title": "BEHIND THE BARS - MATCHA WORKSHOP",
+      "slug": "GHM6mCFu",
+      "date": "2025-08-10",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Coffee Roasters, Nungambakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/GHM6mCFu-6361c2ab.jpg"
+    },
+    {
+      "title": "Matcha Miles",
+      "slug": "128MUvGa",
+      "date": "2025-08-09",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "SKATING AREA",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/128MUvGa-7efaf9b7.jpg"
+    },
+    {
+      "title": "TWISTED - PASTA POP-UP",
+      "slug": "LNQc8mWW",
+      "date": "2025-08-08",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Budan House - Alwarpet",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/LNQc8mWW-fccc1bec.jpg"
+    },
+    {
+      "title": "WEEK 6 : RAVE RUN",
+      "slug": "IqPxJb2D",
+      "date": "2025-08-02",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Cafe Noci",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/IqPxJb2D-74eab45a.jpg"
+    },
+    {
+      "title": "Shoreline Showdown",
+      "slug": "RrhIRNkF",
+      "date": "2025-07-26",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "Bask by Coffee, Palavakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/RrhIRNkF-fbefe9b4.jpg"
+    },
+    {
+      "title": "KONNECT - 10 Strangers One Table",
+      "slug": "k5to5rgY",
+      "date": "2025-07-23",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Coffee Roasters, Nungambakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/k5to5rgY-9828e76b.jpg"
+    },
+    {
+      "title": "Behind the Bars - Coffee Workshop | ED. 02",
+      "slug": "UNWXemZO",
+      "date": "2025-07-20",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Coffee Roasters, Nungambakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/UNWXemZO-6191c0c7.jpg"
+    },
+    {
+      "title": "Dance Workshop on Monica from Coolie",
+      "slug": "WB5jP7Pp",
+      "date": "2025-07-19",
+      "visibility": "public",
+      "brand": "HybridX",
+      "venue": "77 Fitness Studio Nungambakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/WB5jP7Pp-05582423.jpg"
+    },
+    {
+      "title": "The Five Senses - Dessert & Coffee Pairing",
+      "slug": "tPw4FYj3",
+      "date": "2025-07-16",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Coffee Roasters, Nungambakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/tPw4FYj3-7084fae8.jpg"
+    },
+    {
+      "title": "Behind The Bars - Coffee Workshop | ED. 01",
+      "slug": "Jho7kaVA",
+      "date": "2025-07-13",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Coffee Roasters, Nungambakkam",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/Jho7kaVA-d9cb4dfe.jpg"
+    },
+    {
+      "title": "The Social Stretch",
+      "slug": "ODVtbTyB",
+      "date": "2025-07-12",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Budan House - Alwarpet",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/ODVtbTyB-7f80f208.jpg"
+    },
+    {
+      "title": "calmAF - A Matcha Weekend Carnival",
+      "slug": "9WX9LhA3",
+      "date": "2025-06-28",
+      "visibility": "public",
+      "brand": "KUP Coffee Roasters",
+      "venue": "KUP Budan House - Alwarpet",
+      "city": "Chennai",
+      "image": "https://media.fanpit.app/banners/9WX9LhA3-425da1ab.jpg"
+    }
+  ],
+  "sources": [
+    "https://events-api.fanpit.app/public/events",
+    "https://events-api.fanpit.app/public/events/past"
+  ]
+}
