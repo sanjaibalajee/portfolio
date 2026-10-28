@@ -1,0 +1,36 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "sanjai-party",
+  "main": "index.ts",
+  "compatibility_date": "2026-10-26",
+  "workers_dev": true,
+  "preview_urls": false,
+  "durable_objects": {
+    "bindings": [
+      { "name": "ROOMS", "class_name": "PartyRoom" },
+      { "name": "QUOTA", "class_name": "PartyQuota" },
+    ],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PartyRoom", "PartyQuota"] }],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://www.sanjaibalajee.com,https://sanjaibalajee.com",
+    "AI_DAILY_LIMIT": "40",
+  },
+  "observability": { "enabled": true, "logs": { "invocation_logs": false } },
+  "env": {
+    "staging": {
+      "name": "sanjai-party-staging",
+      "durable_objects": {
+        "bindings": [
+          { "name": "ROOMS", "class_name": "PartyRoom" },
+          { "name": "QUOTA", "class_name": "PartyQuota" },
+        ],
+      },
+      "vars": {
+        // Replace with the exact Vercel preview/branch origin before deployment.
+        "ALLOWED_ORIGINS": "https://replace-with-your-preview-host.vercel.app",
+        "AI_DAILY_LIMIT": "5",
+      },
+    },
+  },
+}
