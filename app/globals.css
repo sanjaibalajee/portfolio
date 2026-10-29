@@ -39,6 +39,39 @@ body {
   @apply bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100;
 }
 
+.terminal-highlight {
+  padding: 0.05em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  color: #146c43;
+  background-color: #e0f2e5;
+}
+
+.terminal-highlight[data-tone='blue'] {
+  color: #1d4ed8;
+  background-color: #e7eefb;
+}
+
+.terminal-highlight[data-tone='amber'] {
+  color: #854d0e;
+  background-color: #fff0c9;
+}
+
+.dark .terminal-highlight {
+  color: #8ceab6;
+  background-color: #143125;
+}
+
+.dark .terminal-highlight[data-tone='blue'] {
+  color: #9ac5ff;
+  background-color: #182a45;
+}
+
+.dark .terminal-highlight[data-tone='amber'] {
+  color: #f2cc7c;
+  background-color: #392b13;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 

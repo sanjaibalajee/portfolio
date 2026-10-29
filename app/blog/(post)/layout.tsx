@@ -12,7 +12,8 @@ export default async function BlogLayout({
   const posts = await getBlogPosts()
   return (
     <AgentViewSwitch>
-    <PostLikeProvider slugs={posts.map(post => post.slug)}>
+    {/* only the newest post shows the like button; older posts stay read-only. */}
+    <PostLikeProvider slugs={posts.slice(0, 1).map(post => post.slug)}>
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow">
         <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:mb-2">
