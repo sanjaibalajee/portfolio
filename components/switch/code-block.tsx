@@ -15,7 +15,7 @@ export function CodeBlock({
 }) {
   return (
     <figure className="overflow-hidden rounded-lg border border-neutral-800 bg-[#0d1117]">
-      <figcaption className="flex items-center justify-between gap-4 border-b border-neutral-800 bg-[#161b22] px-3 py-2 text-xs text-neutral-500">
+      <figcaption className="flex items-center justify-between gap-4 border-b border-neutral-800 bg-[#161b22] px-3 py-2 text-xs text-neutral-400">
         <span className="flex items-center gap-3">
           <span className="flex gap-1.5" aria-hidden="true">
             <span className="size-2.5 rounded-full bg-[#ff5f57]" />
@@ -50,11 +50,11 @@ export function CodeBlock({
 export function DifficultyTag({ difficulty }: { difficulty: string }) {
   const tone =
     difficulty === "Easy"
-      ? "text-emerald-400/80"
+      ? "text-emerald-700 dark:text-emerald-400"
       : difficulty === "Medium"
-        ? "text-amber-400/80"
+        ? "text-amber-700 dark:text-amber-400"
         : difficulty === "Hard"
-          ? "text-rose-400/80"
-          : "text-neutral-500";
+          ? "text-rose-700 dark:text-rose-400"
+          : "text-neutral-600 dark:text-neutral-400";
   return <span className={`text-xs ${tone}`}>{difficulty.toLowerCase()}</span>;
 }

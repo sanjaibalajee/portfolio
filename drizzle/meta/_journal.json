@@ -8,6 +8,13 @@
       "when": 1788709591366,
       "tag": "0000_switch_rewrite",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792991320321,
+      "tag": "0001_blog_likes",
+      "breakpoints": true
     }
   ]
 }

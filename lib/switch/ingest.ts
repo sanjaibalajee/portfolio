@@ -151,8 +151,8 @@ export async function ingestSolutions(payload: IngestPayload) {
       grouped.set(canonical, [...(grouped.get(canonical) ?? []), solution]);
     }
 
-    let insertedSubmissions = 0;
-    let skipped = 0;
+    const problemWrites = [];
+    const submissionRows = [];
 
     for (const [canonicalSlug, solutions] of grouped) {
       const meta = metadata.get(solutions[0].slug)!;
@@ -162,7 +162,7 @@ export async function ingestSolutions(payload: IngestPayload) {
       const statement = solutions.find((solution) => solution.statement)?.statement ?? null;
       const frontendId = meta.frontendId ?? solutions.find((s) => s.frontendId)?.frontendId ?? null;
 
-      await db
+      problemWrites.push(db
         .insert(switchProblems)
         .values({
           slug: canonicalSlug,
@@ -188,32 +188,36 @@ export async function ingestSolutions(payload: IngestPayload) {
             lastSolvedAt: sql`greatest(coalesce(${switchProblems.lastSolvedAt}, excluded.last_solved_at), excluded.last_solved_at)`,
             updatedAt: new Date(),
           },
-        });
+        }));
 
       for (const solution of solutions) {
-        const inserted = await db
-          .insert(switchSubmissions)
-          .values({
-            problemSlug: canonicalSlug,
-            language: solution.language,
-            code: solution.code,
-            contentHash: hash(solution.code),
-            sourcePath: solution.path,
-            submittedAt: new Date(solution.submittedAt),
-          })
-          .onConflictDoNothing({
-            target: [switchSubmissions.sourcePath, switchSubmissions.contentHash],
-          })
-          .returning({ id: switchSubmissions.id });
-        if (inserted.length) insertedSubmissions += 1;
-        else skipped += 1;
+        submissionRows.push({
+          problemSlug: canonicalSlug,
+          language: solution.language,
+          code: solution.code,
+          contentHash: hash(solution.code),
+          sourcePath: solution.path,
+          submittedAt: new Date(solution.submittedAt),
+        });
       }
     }
 
+    // neon-http supports atomic batches, rather than interactive transactions.
+    // Keep every problem and submission in one transaction so a failed group
+    // cannot advance the sync watermark past an earlier missing submission.
+    const submissionWrite = db.insert(switchSubmissions)
+      .values(submissionRows)
+      .onConflictDoNothing({
+        target: [switchSubmissions.sourcePath, switchSubmissions.contentHash],
+      })
+      .returning({ id: switchSubmissions.id });
+    const [firstProblem, ...otherProblems] = problemWrites;
+    const results = await db.batch([firstProblem, ...otherProblems, submissionWrite]);
+    const insertedSubmissions = (results.at(-1) as { id: number }[]).length;
     const result = {
       problems: grouped.size,
       submissions: insertedSubmissions,
-      skipped,
+      skipped: submissionRows.length - insertedSubmissions,
     };
     await db
       .update(switchIngestRuns)

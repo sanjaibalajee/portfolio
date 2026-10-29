@@ -49,14 +49,14 @@ export function SwitchDashboard({ initialData }: { initialData: DashboardData })
 
   return (
     <div className="space-y-10">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-7 border-y border-neutral-800 py-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-7 border-y border-neutral-200 dark:border-neutral-800 py-6">
         <Stat value={String(stats.solved)} label="solved" />
         <Stat value={String(stats.streak)} label="day streak" />
         <Stat value={String(stats.longestStreak)} label="longest" />
         <Stat value={`${noted}/${stats.solved}`} label="with notes" />
       </div>
 
-      <p className="text-xs text-neutral-600">{formatLastRun(lastRun)}</p>
+      <p className="text-xs text-neutral-600 dark:text-neutral-400">{formatLastRun(lastRun)}</p>
 
       <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
         <input
@@ -70,7 +70,7 @@ export function SwitchDashboard({ initialData }: { initialData: DashboardData })
             <button
               key={value}
               onClick={() => setFilter(value)}
-              className={`transition-colors ${filter === value ? "text-neutral-100" : "text-neutral-600 hover:text-neutral-300"}`}
+              className={`transition-colors ${filter === value ? "text-neutral-900 dark:text-neutral-100" : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300"}`}
             >
               {value}
             </button>
@@ -78,11 +78,11 @@ export function SwitchDashboard({ initialData }: { initialData: DashboardData })
         </div>
       </div>
 
-      <div className="divide-y divide-neutral-800 border-t border-neutral-800">
+      <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-t border-neutral-200 dark:border-neutral-800">
         {visible.length ? (
           visible.map((problem) => <ProblemRow key={problem.slug} problem={problem} />)
         ) : (
-          <p className="py-6 text-sm text-neutral-500">
+          <p className="py-6 text-sm text-neutral-600 dark:text-neutral-400">
             {problems.length ? "nothing matches that filter." : "no solutions ingested yet."}
           </p>
         )}
@@ -94,8 +94,8 @@ export function SwitchDashboard({ initialData }: { initialData: DashboardData })
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <p className="text-2xl font-semibold tracking-tight text-neutral-100">{value}</p>
-      <p className="text-xs text-neutral-500 mt-1">{label}</p>
+      <p className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">{value}</p>
+      <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">{label}</p>
     </div>
   );
 }
@@ -135,12 +135,12 @@ function ProblemRow({ problem }: { problem: HighlightedProblem }) {
         <div className="min-w-0">
           <Link
             href={`/switch/${problem.slug}`}
-            className="text-sm text-neutral-200 hover:text-white underline decoration-neutral-700 underline-offset-4 transition-colors"
+            className="text-sm text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white underline decoration-neutral-300 dark:decoration-neutral-700 underline-offset-4 transition-colors"
           >
             {problem.frontendId ? `${problem.frontendId}. ` : ""}
             {problem.title}
           </Link>
-          <p className="text-xs text-neutral-600 mt-1">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
             {problem.lastSolvedAt
               ? new Date(problem.lastSolvedAt).toLocaleDateString("en-IN", {
                   dateStyle: "medium",
@@ -156,15 +156,15 @@ function ProblemRow({ problem }: { problem: HighlightedProblem }) {
       </div>
 
       <div className="flex gap-4 mt-3 text-xs">
-        <button onClick={() => setOpen((value) => !value)} className="text-neutral-500 hover:text-neutral-200">
+        <button onClick={() => setOpen((value) => !value)} className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200">
           {open ? "close" : saved ? "edit note" : "add note"}
         </button>
-        {saved && !open && <span className="text-neutral-700">note saved</span>}
+        {saved && !open && <span className="text-neutral-600 dark:text-neutral-400">note saved</span>}
       </div>
 
       {open && (
-        <div className="mt-5 pl-4 border-l border-neutral-700 space-y-4">
-          <label className="block text-xs text-neutral-500">
+        <div className="mt-5 pl-4 border-l border-neutral-300 dark:border-neutral-700 space-y-4">
+          <label className="block text-xs text-neutral-600 dark:text-neutral-400">
             <span className="block mb-1.5">markdown notes</span>
             <textarea
               value={note}
@@ -180,12 +180,12 @@ function ProblemRow({ problem }: { problem: HighlightedProblem }) {
             <button
               onClick={() => void saveNote()}
               disabled={saving || !dirty}
-              className="text-neutral-200 hover:text-white disabled:text-neutral-600"
+              className="text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white disabled:text-neutral-600 dark:disabled:text-neutral-400"
             >
               {saving ? "saving…" : dirty ? "save note →" : "saved"}
             </button>
             {updatedAt && (
-              <span className="text-neutral-700">
+              <span className="text-neutral-600 dark:text-neutral-400">
                 updated{" "}
                 {new Date(updatedAt).toLocaleString("en-IN", {
                   dateStyle: "medium",
@@ -194,7 +194,7 @@ function ProblemRow({ problem }: { problem: HighlightedProblem }) {
                 })}
               </span>
             )}
-            {error && <span className="text-red-400">{error}</span>}
+            {error && <span className="text-red-700 dark:text-red-400">{error}</span>}
           </div>
 
           {problem.solutions.map((solution) => (

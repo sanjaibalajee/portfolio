@@ -2,6 +2,9 @@ export const dynamic = "force-dynamic"
 import { Footer } from "@/components/footer"
 import { GuestbookClient } from "@/components/guestbook-client"
 import { getGuestbookEntries } from "@/app/actions/getGuestBookEntries"
+import { pageMetadata } from '@/lib/site'
+
+export const metadata = pageMetadata('/guestbook', 'guestbook', 'leave a little note, say hello, or tell me what you are building.')
 
 export default async function Guestbook() {
   const { entries } = await getGuestbookEntries()

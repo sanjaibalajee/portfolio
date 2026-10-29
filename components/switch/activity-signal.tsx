@@ -23,10 +23,10 @@ export function ActivitySignal({ activity }: { activity: DailyActivity[] }) {
   const solutions = days.reduce((total, day) => total + day.count, 0);
 
   return (
-    <section className="mt-10 border-t border-neutral-800 pt-6">
+    <section className="mt-10 border-t border-neutral-200 dark:border-neutral-800 pt-6">
       <div className="flex items-baseline justify-between gap-4">
-        <h2 className="text-sm text-neutral-300">activity</h2>
-        <p className="text-xs text-neutral-600">the last 52 weeks</p>
+        <h2 className="text-sm text-neutral-700 dark:text-neutral-300">activity</h2>
+        <p className="text-xs text-neutral-600 dark:text-neutral-400">the last 52 weeks</p>
       </div>
 
       <div
@@ -36,7 +36,7 @@ export function ActivitySignal({ activity }: { activity: DailyActivity[] }) {
       >
         {weeks.map((week, weekIndex) => (
           <div key={week[0].date} className="relative flex flex-col gap-px pt-3.5 sm:gap-[2px]">
-            <span className="absolute left-0 top-0 text-[8px] leading-none text-neutral-700 sm:text-[9px]" aria-hidden="true">
+            <span className="absolute left-0 top-0 text-[8px] leading-none text-neutral-600 dark:text-neutral-400 sm:text-[9px]" aria-hidden="true">
               {monthLabel(week[0].date, weeks[weekIndex - 1]?.[0].date)}
             </span>
             {week.map((day) => (
@@ -57,17 +57,17 @@ export function ActivitySignal({ activity }: { activity: DailyActivity[] }) {
         ))}
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[10px] text-neutral-600">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[10px] text-neutral-600 dark:text-neutral-400">
         <span>
           {solutions} {solutions === 1 ? "solution" : "solutions"} across {activeDays}{" "}
           {activeDays === 1 ? "day" : "days"}
         </span>
         <span className="flex items-center gap-1.5">
           less
-          <span className="size-2 bg-neutral-900" />
-          <span className="size-2 bg-emerald-900" />
-          <span className="size-2 bg-emerald-700" />
-          <span className="size-2 bg-emerald-500" />
+          <span className="size-2 bg-neutral-100 dark:bg-neutral-900" />
+          <span className="size-2 bg-emerald-200 dark:bg-emerald-900" />
+          <span className="size-2 bg-emerald-400 dark:bg-emerald-700" />
+          <span className="size-2 bg-emerald-600 dark:bg-emerald-500" />
           more
         </span>
       </div>
@@ -86,8 +86,8 @@ function monthLabel(date: string, previous?: string) {
 /** Absolute steps, not a share of the busiest day, so the legend means the same thing every week. */
 function tone(count: number, future: boolean) {
   if (future) return "bg-transparent";
-  if (count === 0) return "bg-neutral-900";
-  if (count === 1) return "bg-emerald-900";
-  if (count === 2) return "bg-emerald-700";
-  return "bg-emerald-500";
+  if (count === 0) return "bg-neutral-100 dark:bg-neutral-900";
+  if (count === 1) return "bg-emerald-200 dark:bg-emerald-900";
+  if (count === 2) return "bg-emerald-400 dark:bg-emerald-700";
+  return "bg-emerald-600 dark:bg-emerald-500";
 }

@@ -1,19 +1,36 @@
 {
   "posts": [
     {
+      "slug": "building-outworld-from-0-to-1",
+      "date": "Oct 29, 2026",
+      "title": "building outworld from 0 to 1",
+      "published": "2026-10-29",
+      "description": "events, broken bookings, infrastructure migrations, and how ai made building more fun.",
+      "related": ["sidequestmaxxing-my-way-back", "chasing-the-high"]
+    },
+    {
       "slug": "chasing-the-high",
       "date": "Jun 23, 2026",
-      "title": "chasing the high"
+      "title": "chasing the high",
+      "published": "2026-06-23",
+      "description": "on the rush of shipping something, and learning to notice what keeps me chasing it.",
+      "related": ["sidequestmaxxing-my-way-back", "building-outworld-from-0-to-1"]
     },
     {
       "slug": "a-year-of-unlearning",
       "date": "Jan 23, 2026",
-      "title": "a year of unlearning"
+      "title": "a year of unlearning",
+      "published": "2026-01-23",
+      "description": "a diff of the beliefs i've kept, changed and let go of over the past year.",
+      "related": ["chasing-the-high", "sidequestmaxxing-my-way-back"]
     },
     {
       "slug": "sidequestmaxxing-my-way-back",
       "date": "Oct 27, 2025",
-      "title": "sidequestmaxxing my way back"
+      "title": "sidequestmaxxing my way back",
+      "published": "2025-10-27",
+      "description": "friends, late nights and the sidequests that led to fanpit and outworld.",
+      "related": ["building-outworld-from-0-to-1", "chasing-the-high"]
     }
   ]
 }

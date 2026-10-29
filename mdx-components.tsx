@@ -4,6 +4,8 @@ import { Gallery } from '@/app/blog/components/gallery'
 import { DiffBlock } from '@/app/blog/components/diff-block'
 import { Highlight } from '@/app/blog/components/highlight'
 import { BigQuote } from '@/app/blog/components/big-quote'
+import { HeadingLink } from '@/components/heading-link'
+import { PostMeta } from '@/components/post-meta'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -12,19 +14,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     DiffBlock,
     Highlight,
     BigQuote,
+    PostMeta,
     h1: ({ children }) => (
       <h1 className="font-semibold text-3xl mb-8 tracking-tight text-neutral-900 dark:text-neutral-100">
         {children}
       </h1>
     ),
-    h2: ({ children }) => (
-      <h2 className="font-semibold text-2xl mb-6 mt-8 tracking-tight text-neutral-900 dark:text-neutral-100">
-        {children}
+    h2: ({ children, id }) => (
+      <h2 id={id} className="scroll-mt-8 font-semibold text-2xl mb-6 mt-8 tracking-tight text-neutral-900 dark:text-neutral-100">
+        {children}{id && <HeadingLink id={id} />}
       </h2>
     ),
-    h3: ({ children }) => (
-      <h3 className="font-semibold text-xl mb-4 mt-6 tracking-tight text-neutral-900 dark:text-neutral-100">
-        {children}
+    h3: ({ children, id }) => (
+      <h3 id={id} className="scroll-mt-8 font-semibold text-xl mb-4 mt-6 tracking-tight text-neutral-900 dark:text-neutral-100">
+        {children}{id && <HeadingLink id={id} />}
       </h3>
     ),
     p: ({ children }) => (
@@ -51,8 +54,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <a
         href={href}
         className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-2 transition-colors"
-        target="_blank"
-        rel="noopener noreferrer"
+        target={href?.startsWith('http') ? '_blank' : undefined}
+        rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
         {children}
       </a>

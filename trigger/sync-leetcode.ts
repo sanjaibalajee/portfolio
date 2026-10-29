@@ -14,6 +14,8 @@ import {
  *
  * Set on the Trigger.dev environment:
  *   LEETCODE_SESSION, LEETCODE_CSRF_TOKEN, INGEST_URL, INGEST_TOKEN
+ * Production INGEST_URL: https://www.sanjaibalajee.com/api/switch/ingest
+ * Use the canonical URL directly so a cross-host redirect cannot drop auth.
  */
 
 /** Detail calls per run. Keeps a first run over a long history from timing out;

@@ -22,9 +22,9 @@ const ERRORS: Record<string, string> = {
 function Shell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="min-h-[55vh] flex flex-col justify-center">
-      <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">private</p>
-      <h1 className="font-semibold text-3xl tracking-tight text-neutral-100 mb-4">switch.</h1>
-      <p className="text-neutral-400 leading-relaxed max-w-md mb-6">{title}</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-400 mb-3">private</p>
+      <h1 className="font-semibold text-3xl tracking-tight text-neutral-900 dark:text-neutral-100 mb-4">switch.</h1>
+      <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md mb-6">{title}</p>
       {children}
     </section>
   );
@@ -38,9 +38,9 @@ export default async function SwitchLoginPage({
   if (!isDatabaseConfigured) {
     return (
       <Shell title="database setup is required before you can sign in.">
-        <p className="text-sm text-neutral-600 max-w-lg">
-          add <code className="text-neutral-400">DATABASE_URL</code> to{" "}
-          <code className="text-neutral-400">.env.local</code>, apply the migration, and restart the app.
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-lg">
+          add <code className="text-neutral-600 dark:text-neutral-400">DATABASE_URL</code> to{" "}
+          <code className="text-neutral-600 dark:text-neutral-400">.env.local</code>, apply the migration, and restart the app.
         </p>
       </Shell>
     );
@@ -49,12 +49,12 @@ export default async function SwitchLoginPage({
   if (!isGitHubAuthConfigured) {
     return (
       <Shell title="github login is not configured yet.">
-        <p className="text-sm text-neutral-600 max-w-lg">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-lg">
           create a github oauth app, then set{" "}
-          <code className="text-neutral-400">AUTH_GITHUB_ID</code>,{" "}
-          <code className="text-neutral-400">AUTH_GITHUB_SECRET</code> and{" "}
-          <code className="text-neutral-400">AUTH_SECRET</code>. the callback url must be{" "}
-          <code className="text-neutral-400">/api/auth/callback/github</code> on this origin.
+          <code className="text-neutral-600 dark:text-neutral-400">AUTH_GITHUB_ID</code>,{" "}
+          <code className="text-neutral-600 dark:text-neutral-400">AUTH_GITHUB_SECRET</code> and{" "}
+          <code className="text-neutral-600 dark:text-neutral-400">AUTH_SECRET</code>. the callback url must be{" "}
+          <code className="text-neutral-600 dark:text-neutral-400">/api/auth/callback/github</code> on this origin.
         </p>
       </Shell>
     );
@@ -68,7 +68,7 @@ export default async function SwitchLoginPage({
   return (
     <Shell title="your solved problems, the code, and your private notes.">
       {error && (
-        <p className="text-sm text-red-400 mb-6 max-w-lg">
+        <p className="text-sm text-red-700 dark:text-red-400 mb-6 max-w-lg">
           {ERRORS[error] ?? `sign-in failed (${error}).`}
         </p>
       )}
@@ -76,7 +76,7 @@ export default async function SwitchLoginPage({
         "use server";
         await signIn("github", { redirectTo: "/switch/dashboard" });
       }}>
-        <button className="px-4 py-2 border border-neutral-700 text-sm text-neutral-200 hover:border-neutral-400 hover:text-white transition-colors">
+        <button className="px-4 py-2 border border-neutral-300 dark:border-neutral-700 text-sm text-neutral-800 dark:text-neutral-200 hover:border-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors">
           continue with github →
         </button>
       </form>

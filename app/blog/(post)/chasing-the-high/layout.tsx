@@ -1,16 +1,11 @@
-import type { Metadata } from 'next'
+import { articleStructuredData, blogMetadata, posts } from '@/lib/blog'
 
-const description = "i used to think i build because i love building. mostly true. but there's an engine underneath it that doesn't care what it runs on, and naming it changed how i work."
-
-export const metadata: Metadata = {
-  title: 'chasing the high',
-  description,
-  openGraph: {
-    title: 'chasing the high',
-    description,
-  },
-}
+export const metadata = blogMetadata('chasing-the-high')
 
 export default function ChasingTheHighLayout({ children }: { children: React.ReactNode }) {
-  return children
+  const post = posts.find(post => post.slug === 'chasing-the-high')!
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData(post)).replace(/</g, '\\u003c') }} />
+    {children}
+  </>
 }

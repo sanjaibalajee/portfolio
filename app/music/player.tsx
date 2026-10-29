@@ -267,13 +267,13 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
       aria-label="Music player"
       tabIndex={0}
       onKeyDown={handlePlayerKeyDown}
-      className="border-t border-neutral-800 outline-none focus-visible:border-neutral-500"
+      className="border-t border-neutral-200 dark:border-neutral-800 outline-none focus-visible:border-neutral-500"
     >
       {/* Now playing. The hairline at the bottom edge of this block doubles as
           the seek bar, so the player needs no chrome of its own. */}
       <div className="relative pt-8 pb-7">
         <div className="flex items-start gap-5">
-          <div className="relative size-28 shrink-0 border border-neutral-800 sm:size-36">
+          <div className="relative size-28 shrink-0 border border-neutral-200 dark:border-neutral-800 sm:size-36">
             {currentTrack?.artworkUrl ? (
               // eslint-disable-next-line @next/next/no-img-element -- resolved client-side from the iTunes search API
               <img
@@ -284,27 +284,27 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
                 }`}
               />
             ) : (
-              <div className="grid size-full place-items-center text-sm text-neutral-700">
+              <div className="grid size-full place-items-center text-sm text-neutral-600 dark:text-neutral-400">
                 {currentTrack?.title.slice(0, 2).toLowerCase()}
               </div>
             )}
           </div>
 
           <div className="flex min-w-0 flex-1 flex-col">
-            <p className="flex items-center gap-2 text-[10px] text-neutral-600" aria-live="polite">
+            <p className="flex items-center gap-2 text-[10px] text-neutral-600 dark:text-neutral-400" aria-live="polite">
               {state}
-              <span className="text-neutral-700">
+              <span className="text-neutral-600 dark:text-neutral-400">
                 · {String(currentIndex + 1).padStart(2, "0")}/
                 {String(tracks.length).padStart(2, "0")}
               </span>
             </p>
-            <h2 className="mt-2.5 truncate text-xl font-semibold tracking-tight text-neutral-100 sm:text-2xl">
+            <h2 className="mt-2.5 truncate text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-2xl">
               {currentTrack?.title ?? "nothing queued"}
             </h2>
-            <p className="mt-1.5 truncate text-sm text-neutral-400">
+            <p className="mt-1.5 truncate text-sm text-neutral-600 dark:text-neutral-400">
               {currentTrack?.artist ?? "—"}
             </p>
-            <p className="mt-1 truncate text-xs text-neutral-600">
+            <p className="mt-1 truncate text-xs text-neutral-600 dark:text-neutral-400">
               {currentTrack?.album ??
                 (libraryState === "loading" ? "matching on apple music…" : "no preview")}
             </p>
@@ -316,7 +316,7 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
             type="button"
             onClick={() => selectTrack(currentIndex - 1, isPlaying)}
             aria-label="Previous track"
-            className="grid size-9 place-items-center text-neutral-500 transition-colors hover:text-neutral-100 focus-visible:text-neutral-100 focus-visible:outline focus-visible:outline-neutral-600"
+            className="grid size-9 place-items-center text-neutral-600 dark:text-neutral-400 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100 focus-visible:text-neutral-900 dark:focus-visible:text-neutral-100 focus-visible:outline focus-visible:outline-neutral-600"
           >
             <SkipBack className="size-3.5" aria-hidden="true" />
           </button>
@@ -325,7 +325,7 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
             onClick={togglePlayback}
             disabled={!playable}
             aria-label={isPlaying ? "Pause" : "Play"}
-            className="grid size-9 place-items-center bg-neutral-100 text-neutral-950 transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-neutral-800 disabled:text-neutral-600"
+            className="grid size-9 place-items-center bg-neutral-900 dark:bg-neutral-100 text-neutral-50 dark:text-neutral-950 transition-colors hover:bg-neutral-800 dark:hover:bg-white disabled:cursor-not-allowed disabled:bg-neutral-200 dark:disabled:bg-neutral-800 disabled:text-neutral-600 dark:disabled:text-neutral-400"
           >
             {isPlaying ? (
               <Pause className="size-3.5 fill-current" aria-hidden="true" />
@@ -337,18 +337,18 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
             type="button"
             onClick={() => selectTrack(currentIndex + 1, isPlaying)}
             aria-label="Next track"
-            className="grid size-9 place-items-center text-neutral-500 transition-colors hover:text-neutral-100 focus-visible:text-neutral-100 focus-visible:outline focus-visible:outline-neutral-600"
+            className="grid size-9 place-items-center text-neutral-600 dark:text-neutral-400 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100 focus-visible:text-neutral-900 dark:focus-visible:text-neutral-100 focus-visible:outline focus-visible:outline-neutral-600"
           >
             <SkipForward className="size-3.5" aria-hidden="true" />
           </button>
 
-          <p className="ml-3 text-[11px] text-neutral-500 tabular-nums">
+          <p className="ml-3 text-[11px] text-neutral-600 dark:text-neutral-400 tabular-nums">
             {formatTime(currentTime)}
-            <span className="text-neutral-700"> / {formatTime(duration)}</span>
+            <span className="text-neutral-600 dark:text-neutral-400"> / {formatTime(duration)}</span>
           </p>
 
           <div className="ml-auto hidden items-center gap-2.5 sm:flex">
-            <Volume2 className="size-3 text-neutral-600" aria-hidden="true" />
+            <Volume2 className="size-3 text-neutral-600 dark:text-neutral-400" aria-hidden="true" />
             <input
               type="range"
               min="0"
@@ -365,9 +365,9 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
 
         {/* The block's bottom hairline is the progress track. */}
         <div className="absolute inset-x-0 bottom-0 h-4 translate-y-1/2">
-          <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-neutral-800" />
+          <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-neutral-200 dark:bg-neutral-800" />
           <div
-            className="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-neutral-100 transition-[width] duration-200 ease-linear"
+            className="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-neutral-900 dark:bg-neutral-100 transition-[width] duration-200 ease-linear"
             style={{ width: `${progress}%` }}
           />
           <input
@@ -385,9 +385,9 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
       </div>
 
       <div className="pt-7">
-        <h3 className="text-sm text-neutral-300">rotation</h3>
+        <h3 className="text-sm text-neutral-700 dark:text-neutral-300">rotation</h3>
 
-        <div className="mt-4 divide-y divide-neutral-900 border-y border-neutral-800">
+        <div className="mt-4 divide-y divide-neutral-200 dark:divide-neutral-900 border-y border-neutral-200 dark:border-neutral-800">
           {tracks.map((track, index) => {
             const isActive = index === currentIndex
 
@@ -398,9 +398,9 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
                 onClick={() => selectTrack(index)}
                 aria-current={isActive ? "true" : undefined}
                 data-active={isActive}
-                className="group grid w-full grid-cols-[36px_minmax(0,1fr)_auto] items-center gap-3.5 py-2.5 text-left transition-colors hover:bg-neutral-900/40 focus-visible:bg-neutral-900/40 focus-visible:outline-none data-[active=true]:bg-neutral-900/40"
+                className="group grid w-full grid-cols-[36px_minmax(0,1fr)_auto] items-center gap-3.5 py-2.5 text-left transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900/40 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-900/40 focus-visible:outline-none data-[active=true]:bg-neutral-100 dark:data-[active=true]:bg-neutral-900/40"
               >
-                <span className="relative block size-9 border border-neutral-800">
+                <span className="relative block size-9 border border-neutral-200 dark:border-neutral-800">
                   {track.artworkUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element -- resolved client-side from the iTunes search API
                     <img
@@ -413,7 +413,7 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
                       }`}
                     />
                   ) : (
-                    <span className="grid size-full place-items-center text-[10px] text-neutral-700 tabular-nums">
+                    <span className="grid size-full place-items-center text-[10px] text-neutral-600 dark:text-neutral-400 tabular-nums">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   )}
@@ -425,15 +425,15 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
                 </span>
 
                 <span className="min-w-0">
-                  <span className="block truncate text-[13px] text-neutral-300 transition-colors group-hover:text-neutral-100 group-data-[active=true]:text-neutral-50">
+                  <span className="block truncate text-[13px] text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-neutral-900 dark:group-hover:text-neutral-100 group-data-[active=true]:text-neutral-950 dark:group-data-[active=true]:text-neutral-50">
                     {track.title}
                   </span>
-                  <span className="mt-0.5 block truncate text-[11px] text-neutral-600">
+                  <span className="mt-0.5 block truncate text-[11px] text-neutral-600 dark:text-neutral-400">
                     {track.artist}
                   </span>
                 </span>
 
-                <span className="pr-0.5 text-[10px] text-neutral-600">
+                <span className="pr-0.5 text-[10px] text-neutral-600 dark:text-neutral-400">
                   {isActive ? (
                     <Bars playing={isPlaying} />
                   ) : !track.previewUrl && libraryState !== "loading" ? (
@@ -445,10 +445,10 @@ export function Player({ tracks: trackInputs }: { tracks: TrackInput[] }) {
           })}
         </div>
 
-        <p className="mt-3 flex items-center justify-end gap-2 text-[10px] text-neutral-600">
-          <span className="border border-neutral-800 px-1.5 py-0.5 text-neutral-400">space</span>
+        <p className="mt-3 flex items-center justify-end gap-2 text-[10px] text-neutral-600 dark:text-neutral-400">
+          <span className="border border-neutral-200 dark:border-neutral-800 px-1.5 py-0.5 text-neutral-600 dark:text-neutral-400">space</span>
           play/pause
-          <span className="border border-neutral-800 px-1.5 py-0.5 text-neutral-400">← →</span>
+          <span className="border border-neutral-200 dark:border-neutral-800 px-1.5 py-0.5 text-neutral-600 dark:text-neutral-400">← →</span>
           change track
         </p>
       </div>

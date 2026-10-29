@@ -1,5 +1,8 @@
 import Link from "next/link"
 import { Footer } from "@/components/footer"
+import { pageMetadata } from '@/lib/site'
+
+export const metadata = pageMetadata('/resources', 'resources', 'slides and resources from talks and workshops.')
 
 export default function Resources() {
   return (

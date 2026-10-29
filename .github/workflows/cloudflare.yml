@@ -1,0 +1,145 @@
+name: Cloudflare Party
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/cloudflare.yml'
+      - 'workers/party/**'
+      - 'lib/party/**'
+      - 'scripts/party/**'
+      - 'tests/party/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.nvmrc'
+      - 'tsconfig.json'
+      - 'eslint.config.mjs'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cloudflare.yml'
+      - 'workers/party/**'
+      - 'lib/party/**'
+      - 'scripts/party/**'
+      - 'tests/party/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.nvmrc'
+      - 'tsconfig.json'
+      - 'eslint.config.mjs'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Worker environment
+        type: choice
+        options: [staging, production]
+        default: staging
+        required: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CI: true
+  WRANGLER_SEND_METRICS: false
+
+jobs:
+  validate:
+    name: Validate Party Worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: cloudflare-validation-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Lint Worker and shared game code
+        run: npx --no-install eslint lib/party scripts/party workers/party/index.ts tests/party
+      - run: npm run test:party
+      - run: npm run party:worker:check
+      - run: npm run party:worker:check:staging
+
+  deploy:
+    name: Deploy Party Worker
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: ${{ inputs.environment == 'staging' && 'Preview' || 'Production' }}
+    concurrency:
+      group: cloudflare-deploy-${{ inputs.environment || 'production' }}
+      cancel-in-progress: false
+    env:
+      TARGET_ENVIRONMENT: ${{ inputs.environment || 'production' }}
+    steps:
+      - name: Require the latest main commit for production
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "$TARGET_ENVIRONMENT" == production ]]; then
+            if [[ "$GITHUB_REF" != refs/heads/main ]]; then
+              echo '::error::Production deployments must run from main.'
+              exit 1
+            fi
+            main_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
+            if [[ "$GITHUB_SHA" != "$main_sha" ]]; then
+              echo '::error::This run is older than main. Run the workflow for the latest main commit.'
+              exit 1
+            fi
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Deploy the selected Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PARTY_STAGING_ALLOWED_ORIGINS: ${{ vars.PARTY_STAGING_ALLOWED_ORIGINS }}
+        run: |
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
+            if [[ -z "${!name}" ]]; then
+              echo "::error::Missing GitHub Actions secret: $name"
+              exit 1
+            fi
+          done
+          if [[ "$TARGET_ENVIRONMENT" == staging ]]; then
+            node --input-type=module <<'JS'
+          const origins = process.env.PARTY_STAGING_ALLOWED_ORIGINS?.split(',') ?? [];
+          if (!origins.length || origins.some(origin => {
+            try {
+              const url = new URL(origin);
+              return url.protocol !== 'https:' || url.origin !== origin ||
+                url.hostname.includes('*') || url.hostname.includes('replace-with-');
+            } catch { return true; }
+          })) {
+            console.error('::error::Set PARTY_STAGING_ALLOWED_ORIGINS to exact HTTPS preview origins, comma-separated, without trailing slashes.');
+            process.exit(1);
+          }
+          JS
+            npm run party:worker:deploy:staging -- --var "ALLOWED_ORIGINS:$PARTY_STAGING_ALLOWED_ORIGINS"
+          else
+            npm run party:worker:deploy
+          fi
+      - name: Record deployment
+        run: |
+          {
+            echo "### Cloudflare Party: $TARGET_ENVIRONMENT"
+            echo "Commit: $GITHUB_SHA"
+            echo 'Worker deployment completed. Vercel connection URLs and hosted gameplay checks remain separate.'
+          } >> "$GITHUB_STEP_SUMMARY"

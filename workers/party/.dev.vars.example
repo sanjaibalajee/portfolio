@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local Wrangler development. This file has no secrets.
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
+AI_DAILY_LIMIT=5
+# Optional local-only key. Public deployments use `wrangler secret put` instead.
+GROQ_API_KEY=
