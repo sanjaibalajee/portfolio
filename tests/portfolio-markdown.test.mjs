@@ -175,7 +175,7 @@ test('Blog code blocks retain their complete template-literal contents', async (
   const markdown = mdxMarkdown(source, new URL('https://example.com/blog/a-year-of-unlearning'), { PostMeta: props => String(props.date) })
   assert(markdown.includes('```diff\n# file: whatibelieve.config'))
   assert(markdown.includes('+ responsibility: "it works while i sleep"'))
-  assert(markdown.includes('- strategy: "waiting for the perfect plan"'))
+  assert(markdown.includes('- metric: "shipping code (launches)"'))
   assert(!markdown.includes('<DiffBlock>'))
 })
 
