@@ -140,7 +140,7 @@ In [repository Actions secrets](https://github.com/sanjaibalajee/portfolio/setti
 | `TRIGGER_ACCESS_TOKEN` | A production deployment key for the project in `trigger.config.ts` |
 | `TRIGGER_STAGING_ACCESS_TOKEN` | A separate staging deployment key; needed only for manual Trigger.dev staging deployments |
 
-Use Cloudflare's [CI authentication instructions](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/) to scope the token. Use a Trigger.dev environment API key with **Deploy only** access, following its [GitHub Actions instructions](https://trigger.dev/docs/github-actions). Each Trigger.dev key must match the selected environment. Keys can instead be stored in the matching GitHub environment with the same names; environment secrets take precedence over repository secrets.
+Use Cloudflare's [CI authentication instructions](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/) to scope the token. Prefer a Trigger.dev environment API key with **Deploy only** access when the plan supports restricted keys, following its [GitHub Actions instructions](https://trigger.dev/docs/github-actions). Each Trigger.dev key must match the selected environment. Keys can instead be stored in the matching GitHub environment with the same names; environment secrets take precedence over repository secrets.
 
 The GitHub CLI can prompt for each secret without placing its value in command history:
 
@@ -154,7 +154,9 @@ gh secret set TRIGGER_STAGING_ACCESS_TOKEN
 
 For Cloudflare staging, set the repository Actions **variable** `PARTY_STAGING_ALLOWED_ORIGINS` to `https://staging.sanjaibalajee.com`, matching the staging Worker config. Multiple exact origins may be comma-separated, without spaces or trailing slashes. The workflow checks this value and overrides the tracked staging allowlist only for that deployment. It rejects missing values, wildcards and the placeholder. Keep production origins in `workers/party/wrangler.jsonc`.
 
-The staging origin variable is configured for `https://staging.sanjaibalajee.com`. No deployment credentials were configured as part of adding these workflows. A deployment fails with the missing secret's name until its credentials are supplied. After merging the workflows to `main`, use [Actions](https://github.com/sanjaibalajee/portfolio/actions) to run staging validation/deployment, then follow the hosted checks above before production rollout.
+Configuration verified on 29 October 2026: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` and `TRIGGER_ACCESS_TOKEN` are saved as repository Actions secrets. The staging origin variable is configured for `https://staging.sanjaibalajee.com`. The Cloudflare token `portfolio-github-actions` has Workers Scripts Write and Account Settings Read in the selected account. The separate Trigger.dev key `github-actions-production` has full access to this project's production environment, explicitly approved because the current Free plan blocks restricted deployment-only keys. Both new credentials expire on **27 January 2027**; rotate the credentials and update the matching GitHub secrets before that date. No token values belong in this guide or Git.
+
+Trigger.dev staging is unavailable on the current Free plan, so `TRIGGER_STAGING_ACCESS_TOKEN` remains unset and manual Trigger staging deployments cannot run. Do not reuse the production key for staging. Cloudflare staging remains a separate available target. Creating and saving these credentials did not deploy either service. After merging the workflows to `main`, follow the hosted checks above; production runs require the production environment choice.
 
 ### Runtime configuration remains with each provider
 
