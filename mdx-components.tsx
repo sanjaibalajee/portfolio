@@ -4,6 +4,7 @@ import { Gallery } from '@/app/blog/components/gallery'
 import { DiffBlock } from '@/app/blog/components/diff-block'
 import { Highlight } from '@/app/blog/components/highlight'
 import { BigQuote } from '@/app/blog/components/big-quote'
+import { Mark } from '@/components/mark'
 import { HeadingLink } from '@/components/heading-link'
 import { PostMeta } from '@/components/post-meta'
 
@@ -14,6 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     DiffBlock,
     Highlight,
     BigQuote,
+    Mark,
     PostMeta,
     h1: ({ children }) => (
       <h1 className="font-semibold text-3xl mb-8 tracking-tight text-neutral-900 dark:text-neutral-100">
