@@ -1,6 +1,6 @@
 export const siteUrl = new URL('https://www.sanjaibalajee.com')
 export const siteName = 'sanjai balajee'
-export const siteDescription = 'event systems, ios apps and things i build for fun. notes from sanjai balajee.'
+export const siteDescription = 'backends, ios apps and agents. notes from sanjai balajee.'
 
 export function pageMetadata(path: string, title: string, description: string) {
   const url = new URL(path, siteUrl).href
