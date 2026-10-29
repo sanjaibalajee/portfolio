@@ -8,9 +8,20 @@ export type Experience = {
   paragraphs?: InlineContent[][]
 }
 
+const introParts = [
+  "hi, i'm sanjai. i build ",
+  { text: 'backends', tone: 'blue' },
+  ', ',
+  { text: 'ios apps', tone: 'amber' },
+  ' and ',
+  { text: 'agents', tone: 'green' },
+  '. i love building, so most of my evenings go into it.',
+] as const
+
 export const profile = {
   name: 'sanjai balajee',
-  intro: "i build event systems, ios apps and whatever idea keeps me up at night. most of it happens late at night and across weekends. ai has made it easier to follow through on the things i want to try, and building has become a lot more fun.",
+  intro: introParts.map(part => typeof part === 'string' ? part : part.text).join(''),
+  introParts,
 }
 
 export const selectedWork = [

@@ -6,6 +6,7 @@ import { profile, experiences, education, skills, interests, selectedWork, curre
 import { siteUrl } from '@/lib/site'
 import { getBlogPosts } from '@/lib/blog'
 import { PostList } from '@/components/post-list'
+import { Mark } from '@/components/mark'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -28,7 +29,11 @@ export default async function Home() {
             <section>
               <h1 className="mb-8 text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">about</h1>
               <div className="space-y-8">
-                <p className="text-base leading-relaxed text-neutral-800 dark:text-neutral-200">{profile.intro}</p>
+                <p className="text-base leading-relaxed text-neutral-800 dark:text-neutral-200">
+                  {profile.introParts.map((part, index) => typeof part === 'string' ? part : (
+                    <Mark key={index} tone={part.tone}>{part.text}</Mark>
+                  ))}
+                </p>
                 <section className="border-t border-neutral-300 pt-8 dark:border-neutral-700" aria-labelledby="selected-work">
                   <h2 id="selected-work" className="mb-6 text-2xl font-semibold tracking-tight">selected work</h2>
                   <div className="space-y-6">
