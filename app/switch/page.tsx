@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
+import { Mark } from "@/components/mark";
 import { ActivitySignal } from "@/components/switch/activity-signal";
+import { CopyPrompt } from "@/components/switch/copy-prompt";
+import { switchSetupPrompt } from "@/lib/switch/setup-prompt";
 import { DifficultyTag } from "@/components/switch/code-block";
 import { HighlightedCodeBlock } from "@/components/switch/highlighted-code-block";
 import { isDatabaseConfigured } from "@/db/drizzle";
@@ -36,6 +40,8 @@ export default async function SwitchPage() {
           <p className="leading-relaxed text-neutral-700 dark:text-neutral-300 mb-10">
             every problem i&apos;ve solved, the streak behind them, and the code i actually submitted.
           </p>
+
+          <SyncNotes />
 
           {!stats || !problems.length ? (
             <div className="border-t border-neutral-200 dark:border-neutral-800 pt-8 text-sm text-neutral-600 dark:text-neutral-400">
@@ -113,6 +119,61 @@ export default async function SwitchPage() {
       </div>
       <Footer />
     </div>
+  );
+}
+
+function Code({ children }: { children: ReactNode }) {
+  return <code className="bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-neutral-900 dark:text-neutral-100">{children}</code>;
+}
+
+const SYNC_STEPS: ReactNode[] = [
+  <>every night at 02:00 ist, a trigger.dev cron task signs in to leetcode&apos;s graphql api with my session cookies.</>,
+  <>it asks this site for a watermark: the timestamp of the newest submission already stored.</>,
+  <>it pages back through <Code>submissionList</Code>, 20 at a time, until it hits the watermark, and keeps only accepted ones. retries of the same problem in the same language within 24 hours collapse into one.</>,
+  <>oldest first, <Code>submissionDetails</Code> returns the code, title, difficulty and problem number in one call. it waits 350ms between calls and stops at 60 per run, so a long backlog spreads over a few nights.</>,
+  <>batches of 20 go to <Code>POST /api/switch/ingest</Code> with a bearer token. the database credential never leaves vercel.</>,
+  <>the route checks the payload with zod and writes problems and submissions to neon postgres in one atomic batch. submissions are keyed on path plus a sha-256 of the code, so running the same sync twice never adds a duplicate.</>,
+  <>this page reads straight from postgres on every request. shiki highlights the code on the server, and streaks are counted in india time.</>,
+];
+
+// how the leetcode sync works, collapsed under the intro for anyone curious.
+function SyncNotes() {
+  return (
+    <details className="switch-problem group mb-10 border-y border-neutral-200 dark:border-neutral-800">
+      <summary className="flex cursor-pointer items-center gap-2 py-5 text-sm text-neutral-800 dark:text-neutral-200 outline-none transition-colors hover:bg-neutral-100 focus-visible:bg-neutral-100 dark:hover:bg-neutral-900/30 dark:focus-visible:bg-neutral-900/30">
+        <span className="inline-block text-neutral-600 dark:text-neutral-400 transition-transform group-open:rotate-90" aria-hidden="true">
+          ›
+        </span>
+        for nerds: how this stays in sync
+      </summary>
+
+      <div className="space-y-6 pb-7 pl-4 sm:pl-6 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+        <p className="text-xs leading-loose">
+          <Mark tone="amber">leetcode</Mark> → <Mark tone="blue">trigger.dev</Mark> → <Mark tone="blue">/api/switch/ingest</Mark> → <Mark>postgres</Mark> → this page
+        </p>
+
+        <ol className="space-y-3">
+          {SYNC_STEPS.map((step, index) => (
+            <li key={index} className="grid grid-cols-[2rem_1fr] gap-x-1">
+              <span className="text-neutral-500 dark:text-neutral-500">{String(index + 1).padStart(2, "0")}</span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+
+        <p>
+          the watermark only moves past what actually got stored. if a run dies halfway, the next one starts from the last submission that made it, so nothing gets skipped.
+        </p>
+        <p className="text-neutral-600 dark:text-neutral-400">
+          the weak spot is the leetcode session cookie. it expires about once a month, the task fails loudly, and i paste in a new one.
+        </p>
+
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-6">
+          <CopyPrompt text={switchSetupPrompt} />
+          <span className="text-xs text-neutral-600 dark:text-neutral-400">want your own? hand this to your agent.</span>
+        </div>
+      </div>
+    </details>
   );
 }
 
