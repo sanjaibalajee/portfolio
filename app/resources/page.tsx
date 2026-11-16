@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { Footer } from "@/components/footer"
-import { pageMetadata } from '@/lib/site'
+import { pageMetadata, resourcePages } from '@/lib/site'
 
-export const metadata = pageMetadata('/resources', 'resources', 'slides and resources from talks and workshops.')
+export const metadata = pageMetadata('/resources', 'resources', 'slides from talks and workshops, party games for your group chat, and switch.')
 
 export default function Resources() {
   return (
@@ -13,17 +13,20 @@ export default function Resources() {
             resources
           </h1>
           <div className="space-y-4">
-            <Link
-              href="/resources/slides"
-              className="block group hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg p-4 -mx-4 transition-colors"
-            >
-              <h2 className="font-medium text-base sm:text-lg tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                slides
-              </h2>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
-                presentation decks from talks and workshops
-              </p>
-            </Link>
+            {resourcePages.map(page => (
+              <Link
+                key={page.href}
+                href={page.href}
+                className="block group hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg p-4 -mx-4 transition-colors"
+              >
+                <h2 className="font-medium text-base sm:text-lg tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {page.label}
+                </h2>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+                  {page.description}
+                </p>
+              </Link>
+            ))}
           </div>
         </section>
       </div>

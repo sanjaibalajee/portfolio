@@ -13,15 +13,29 @@ export function pageMetadata(path: string, title: string, description: string) {
   }
 }
 
-export const publicPages = [
+// Linked from /resources instead of the nav bar, which keeps the bar to one row.
+export const resourcePages = [
+  { href: '/resources/slides', label: 'slides', description: 'presentation decks from talks and workshops.' },
+  { href: '/party', label: 'party', description: 'a little multiplayer chaos. imposter, psych, drawing relays and games for your group chat.' },
+  { href: '/switch', label: 'switch', description: 'problems solved, the streak, and the code behind each one.' },
+] as const
+
+// `sections` lists the other paths a nav tab stays active on.
+export const navPages: readonly { href: string; label: string; sections?: readonly string[] }[] = [
   { href: '/', label: 'home' },
   { href: '/blog', label: 'blog' },
+  { href: '/skills', label: 'skills' },
   { href: '/music', label: 'music' },
   { href: '/guestbook', label: 'guestbook' },
+  { href: '/resources', label: 'resources', sections: ['/party', '/switch'] },
+]
+
+// Every top-level page, for the sitemap and agent-facing page lists.
+export const publicPages = [
+  ...navPages.map(({ href, label }) => ({ href, label })),
   { href: '/party', label: 'party' },
   { href: '/switch', label: 'switch' },
-  { href: '/resources', label: 'resources' },
-] as const
+]
 
 export const socialLinks = [
   { href: 'mailto:sanjaibalajee@icloud.com', label: 'email' },
