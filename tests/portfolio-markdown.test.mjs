@@ -137,6 +137,26 @@ test('Markdown and discovery use the canonical domain and public links', () => {
   assert(llmsTxt(site).includes('https://www.sanjaibalajee.com/index.md'))
 })
 
+test('Pages moved off the nav bar stay listed for agents and linked from resources', () => {
+  const navHrefs = site.navPages.map(page => page.href)
+  for (const document of [portfolioMarkdown(portfolio, site), llmsTxt(site)]) {
+    for (const path of ['/skills', '/party', '/switch', '/resources']) assert(document.includes(`https://www.sanjaibalajee.com${path})`), path)
+  }
+  for (const page of site.publicPages) {
+    if (!navHrefs.includes(page.href)) assert(site.resourcePages.some(resource => resource.href === page.href), `${page.href} is in neither the nav nor resources`)
+  }
+})
+
+test('Every skill in the synced catalog belongs to exactly one group and has its docs', async () => {
+  const catalog = JSON.parse(await readFile(new URL('../app/skills/skills.json', import.meta.url), 'utf8'))
+  const grouped = catalog.groups.flatMap(group => group.skills)
+  assert.deepEqual([...grouped].sort(), catalog.skills.map(skill => skill.name).sort())
+  for (const skill of catalog.skills) {
+    assert.match(skill.name, /^[a-z0-9-]+$/)
+    for (const field of ['summary', 'description', 'body']) assert(skill[field].trim(), `${skill.name} has no ${field}`)
+  }
+})
+
 test('Markdown safely escapes content and quotes front matter', () => {
   const custom = { ...portfolio, profile: { ...portfolio.profile, name: 'a: "b"', intro: 'a [link] *and* _text_ `code`' } }
   const markdown = portfolioMarkdown(custom, site)
